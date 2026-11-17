@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="TCM.index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EscolheMesa.aspx.cs" Inherits="TCM.index" %>
 
 <!DOCTYPE html>
 
@@ -19,9 +19,11 @@
     </form>
 
 
-    <script src="Scripts/jquery-3.7.1.min.js"></script>
-    <script src="Scripts/jquery.signalR-2.4.3.min.js"></script>
-    <script src="/signalr/hubs"></script> <!-- toda tela vai ter que ter esses 3 ai // pega a quantidade, cria a quantidade de botoes conforme a quantidade de botoes forem recebidas-->
+    <script src="<%= ResolveUrl("~/Scripts/jquery-3.7.1.min.js") %>"></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery.signalR-2.4.3.min.js") %>"></script>
+    <script src="<%= ResolveUrl("~/signalr/hubs") %>"></script>
+
+    </script> <!-- toda tela vai ter que ter esses 3 ai // pega a quantidade, cria a quantidade de botoes conforme a quantidade de botoes forem recebidas-->
     <script>
         $(function () {
 
@@ -56,7 +58,7 @@
                         let numero = Number(botao.textContent);
                         hub.server.reservarMesa(numero)
                         sessionStorage.setItem("mesa", numero);
-                        window.location.href = "atendimento.aspx";
+                        window.location.href = '<%= ResolveUrl("~/Pages/atendimento.aspx") %>';
                         
                     };
 
