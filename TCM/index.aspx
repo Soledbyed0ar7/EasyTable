@@ -1,0 +1,141 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="TCM.index" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div id="areaDasMesas">
+
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <script src="Scripts/jquery-3.7.1.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="/signalr/hubs"></script> <!-- toda tela vai ter que ter esses 3 ai // pega a quantidade, cria a quantidade de botoes conforme a quantidade de botoes forem recebidas-->
+    <script>
+        $(function () {
+
+            var hub = $.connection.hubs;
+
+            hub.client.mesaReservadaAgora = function (num) {
+
+                let botao = document.getElementById("btnMesa" + num);
+
+                botao.disabled = true;
+
+            };
+            hub.client.mesaLiberadaAgora = function (num) {
+
+                let botao = document.getElementById("btnMesa" + num);
+
+                botao.disabled = false;
+
+            };
+            function gerarMesas(numMesas) {
+
+                let container = document.getElementById("areaDasMesas");
+
+                for (let i = 1; i <= numMesas; i++) {
+                    let botao = document.createElement("button");
+                    botao.type = "button";
+                    botao.id = "btnMesa" + i;
+                    botao.textContent = "" + i;
+                    botao.style.backgroundColor = "yellow";
+                    botao.className = "mesa";
+                    botao.onclick = function () {
+                        let numero = Number(botao.textContent);
+                        hub.server.reservarMesa(numero)
+                        sessionStorage.setItem("mesa", numero);
+                        window.location.href = "atendimento.aspx";
+                        
+                    };
+
+                    container.appendChild(botao);
+
+
+                }
+            }
+
+            function trancarMesas(array) {
+
+                let tamanhoArray = array.length;
+
+                for (let i = 0; i < tamanhoArray; i++) {
+
+                    let botao = document.getElementById("btnMesa" + array[i]);
+                    botao.disabled = true;
+                }
+
+            }
+
+            
+
+
+
+            $.connection.hub.start().done(function () {
+
+                hub.server.configurarTelaReservarMesa().done(function () {
+                    limparMesaQuandousada().done(function () {
+
+                        hub.server.mesaQtde().done(function (quantidade) {
+
+                            gerarMesas(quantidade);
+
+                            hub.server.mesasUsadas().done(function (array) {
+                                trancarMesas(array);
+                            });
+
+                        });
+
+                    });
+
+
+                });
+
+            });
+
+
+            function limparMesaQuandousada() {
+
+                let mesa = sessionStorage.getItem("mesa");
+
+                if (mesa) {
+                    return hub.server.liberarMesa(Number(mesa)).done(function () {
+                        sessionStorage.removeItem("mesa");
+                    });
+                }
+
+                return $.Deferred().resolve().promise();
+            }
+
+            window.addEventListener("pageshow", function (event) {
+
+                if (event.persisted) {
+
+                    limparMesaQuandousada()
+
+                }
+
+            });
+
+        });
+
+        
+
+        
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿# Visual Studio e arquivos do usuario
+.vs/
+*.user
+*.suo
+
+# Pastas pesadas e temporarias
+bin/
+Bin/
+obj/
+Obj/
+packages/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Seu arquivo de conexao
+connections.config
