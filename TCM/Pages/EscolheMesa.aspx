@@ -6,6 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/escolherMesa.css") %>">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,6 +28,9 @@
     <script>
         $(function () {
 
+
+
+
             var hub = $.connection.hubs;
 
             hub.client.mesaReservadaAgora = function (num) {
@@ -34,6 +38,7 @@
                 let botao = document.getElementById("btnMesa" + num);
 
                 botao.disabled = true;
+                botao.classList.add("trancada");
 
             };
             hub.client.mesaLiberadaAgora = function (num) {
@@ -41,8 +46,12 @@
                 let botao = document.getElementById("btnMesa" + num);
 
                 botao.disabled = false;
+                botao.classList.remove("trancada");
 
             };
+
+
+
             function gerarMesas(numMesas) {
 
                 let container = document.getElementById("areaDasMesas");
@@ -52,35 +61,26 @@
                     botao.type = "button";
                     botao.id = "btnMesa" + i;
                     botao.textContent = "" + i;
-                    botao.style.backgroundColor = "yellow";
                     botao.className = "mesa";
                     botao.onclick = function () {
-
                         let numero = Number(botao.textContent);
-
-                        hub.server.reservarMesa(numero).done(function (reservou) {
-
-                            if (reservou) {
-
-                                sessionStorage.setItem("mesa", numero);
-
-                                window.location.href = '<%= ResolveUrl("~/Pages/atendimento.aspx") %>';
-
-                            } else {
-
-                                alert("Essa mesa já está ocupada.");
-
-                            }
-
+                        hub.server.reservarMesa(numero).done(function () {
+                            sessionStorage.setItem("mesa", numero);
+                            window.location.href = '<%= ResolveUrl("~/Pages/atendimento.aspx") %>';
                         });
-
-                    };
+ };
 
                     container.appendChild(botao);
 
 
                 }
             }
+
+            /*elementos */
+            let txtBas1 = document.createElement("label");
+            txtBas1.className = "textoMesa";
+            txtBas1.textContent = "Escolha sua mesa";
+            /* */
 
             function trancarMesas(array) {
 
@@ -90,6 +90,7 @@
 
                     let botao = document.getElementById("btnMesa" + array[i]);
                     botao.disabled = true;
+                    botao.classList.add("trancada");
                 }
 
             }
@@ -136,11 +137,11 @@
 
             window.addEventListener("pageshow", function (event) {
 
-                if (event.persisted) {
+                
 
                     limparMesaQuandousada()
 
-                }
+                
 
             });
 

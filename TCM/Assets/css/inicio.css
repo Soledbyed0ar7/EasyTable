@@ -1,0 +1,43 @@
+﻿
+/* classes fixas */
+body {
+    background: linear-gradient(45deg, #0d0c0c, #1d1919, #0d0c0c);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.centralizar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* classes fixas */
+
+/* Tela inicial*/
+.btnIniciar {
+    background-color: transparent;
+    font-size: 3rem;
+    color: white;
+    width: 12vw;
+    border: none;
+    border-radius: 80px;
+    display: flex;
+    text-align: center;
+}
+
+    .btnIniciar:hover {
+        cursor: pointer;
+        background-color: white;
+        border: solid black 1px;
+        color: black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+#inicio {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}

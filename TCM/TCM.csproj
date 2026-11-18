@@ -89,6 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\escolherMesa.css" />
+    <Content Include="Assets\css\inicio.css" />
+    <Content Include="Pages\inicio.aspx" />
     <Content Include="Pages\atendimento.aspx" />
     <Content Include="Pages\EscolheMesa.aspx" />
     <Content Include="connections.config" />
@@ -104,6 +107,13 @@
   <ItemGroup>
     <Compile Include="BLL\MesaBLL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
+    <Compile Include="Pages\inicio.aspx.cs">
+      <DependentUpon>inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\inicio.aspx.designer.cs">
+      <DependentUpon>inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\atendimento.aspx.cs">
       <DependentUpon>atendimento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,7 +145,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\css\" />
     <Folder Include="Assets\img\" />
     <Folder Include="Assets\js\" />
     <Folder Include="Models\" />
