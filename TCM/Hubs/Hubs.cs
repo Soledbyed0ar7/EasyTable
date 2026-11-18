@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
+using TCM.BLL;
 namespace TCM
 {
     public class Hubs : Hub
@@ -14,18 +14,15 @@ namespace TCM
 
         public int mesaQtde()
         {
-            return Convert.ToInt32(bd.ConsultarValor("select count(*) from Mesa"));
+            return MesaBLL.quantidadeDeMesas();
         }
         public object[] mesasUsadas()
         {
-            DataTable dt = bd.Consultar("select idMesa from Mesa where estadoMesa like 'O'");
-            return dt.AsEnumerable().Select(row => row[0]).ToArray();
+            return MesaBLL.quantidadeDeMesasUsadas();
         }
         public void reservarMesa(int num)
         {
-            bd.Executar("update Mesa set estadoMesa ='O' where idMesa = @id", 
-                BancoDados.Param("@id",num)
-                );
+            MesaBLL.reservarMesas(num);
             Clients.Group("ReservandoMesa").mesaReservadaAgora(num);
         }
         public Task configurarTelaReservarMesa()

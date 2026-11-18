@@ -55,11 +55,25 @@
                     botao.style.backgroundColor = "yellow";
                     botao.className = "mesa";
                     botao.onclick = function () {
+
                         let numero = Number(botao.textContent);
-                        hub.server.reservarMesa(numero)
-                        sessionStorage.setItem("mesa", numero);
-                        window.location.href = '<%= ResolveUrl("~/Pages/atendimento.aspx") %>';
-                        
+
+                        hub.server.reservarMesa(numero).done(function (reservou) {
+
+                            if (reservou) {
+
+                                sessionStorage.setItem("mesa", numero);
+
+                                window.location.href = '<%= ResolveUrl("~/Pages/atendimento.aspx") %>';
+
+                            } else {
+
+                                alert("Essa mesa já está ocupada.");
+
+                            }
+
+                        });
+
                     };
 
                     container.appendChild(botao);
