@@ -20,17 +20,48 @@
             </div>
 
 
+
+            <!-- produtos e os caraio tudo -->
+
             <div class="linhaDeProdutos">
-                <h1 id="nomeCategoriaDeOfertaTexto">
+                <h1 id="nomeCategoriaDeOfertaTexto"> <!-- tem que lembrar aq de fazer o esquema de categoria e a pora toda -->
 
                 </h1>
+
+                
                 <div class="slotsProdutos">
 
                 </div>
             </div>
 
+            <!-- modais (produto-->
+
+                <div id="modalProduto">
+                    <div id="conteudoModal">
+
+
+                        <button id="fecharModal"> <- </button>
+
+                        <div class="descricaoDoProduto"> </div>
+
+                    </div>
+                </div>
+
+            <!-- fim dos produtos-->
+
             <div class="rodape">
 
+            </div>
+
+            <div class="carrinhoFixo">
+                <!-- tem que meter o icone do carrinho aq -->
+                <div class="listaAtualCarrinho">
+
+                </div>
+
+                <button onclick="abrirCarrinho()">Ver pedido</button>
+
+                
             </div>
         </div>
     </form>
@@ -46,22 +77,42 @@
             function criarProdutos(produtos) { // recebe aqui as info dos produtos e cria os elementos das caixas dos pedidos
 
 
+                function abrirModalProduto() {
+                    document.getElementById("modalProduto").style.display="flex";
+                }
+
+                function fecharModalProduto() {
+                    document.getElementById("modalProduto").style.display = "none";
+                }
+
+
+
                 let slot = document.createElement("div");
                 slot.className = "slotProduto";
 
+                slot.addEventListener("click", function () { // aq é a função pra abrir o modal lá do produto
+                    abrirModalProduto();
+
+                });
+
+                document.getElementById("fecharModal").addEventListener("click", fecharModalProduto);
+
                 let nome = document.createElement("h3");
                 nome.textContent = produto.nome;
-                nome.className = "nomeProduto"
+                nome.className = "nomeProduto";
+                
+                
 
-                let imagem = document.createElement("img");
-                imagem.src = produto.imagem;
-                imagem.className = "imagemProduto";
+                let foto = document.createElement("img");
+                foto.src = produto.imagem;
+                foto.className = "imagemProduto";
+                
 
 
                 let preco = document.createElement("p");
                 preco.textContent = "R$ " + produto.preco;
 
-
+                slot.appendChild(foto);
                 slot.appendChild(nome);
                 slot.appendChild(preco);
 
@@ -79,11 +130,40 @@
 
                     let slot = criarProduto(produto);
 
-                    guardar.appendChild(card);
+                    guardar.appendChild(slot);
 
                 });
 
             }
+
+
+
+
+            function preencherModalProduto(produto) {
+
+                let area = document.getElementById("descricaoDoProduto");
+
+                let foto = document.createElement("img");
+                foto.src = "/Assets/img/" + produto.img;
+
+                let nome = document.createElement("h2");
+                nome.textContent = produto.nome;
+
+                let descricao = document.createElement("p");
+                descricao.textContent = produto.descricao;
+
+                area.appendChild(nome);
+                area.appendChild(descricao);
+            }
+
+
+
+
+            function abrirCarrinho() {
+                //tem que fazer aq ainda, mas a ideia é daí ele abrir o modal, e vai ter que pegar os dados, puxar os dados lá pra atualizaar as listas já no modal do carrinho depois
+            }
+
+
 
 
 

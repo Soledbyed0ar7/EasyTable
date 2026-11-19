@@ -1,9 +1,43 @@
 ﻿body {
+    background-color: #f1e6d6;
 
 }
 
 .slotProduto {
     display: flex;
     flex-direction: column;
-    border: inset 
+    border: inset white 1.2px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0f0b0b;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+     
+}
+.slotProduto:hover {
+    cursor: pointer;
+    /* mais efeito pra meter aqui depois de hover*/
+}
+
+/*Modais de produto*/
+
+#modalProduto {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudoModal {
+    width: 80%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
 }
