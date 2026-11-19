@@ -1,2 +1,9 @@
 ﻿body {
+
+}
+
+.slotProduto {
+    display: flex;
+    flex-direction: column;
+    border: inset 
 }
