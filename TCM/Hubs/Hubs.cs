@@ -41,15 +41,21 @@ namespace TCM
         public int mesaCookie()
         {
             var cookie = HttpContext.Current.Request.Cookies["mesa"];
-            if(cookie == null )
+            if (cookie == null)
             {
                 return -1;
             }
             return Convert.ToInt32(cookie.Value);
         }
-        public Dictionary<String,object>[] listarTodosProdutos()
+        //atendimento
+        public Dictionary<String, object>[] listarTodosProdutos()
         {
+            return ProdutoBLL.listarTodosProdutos();
+        }
 
+        public Dictionary<String, object>[] listarSubprodutos(int idProduto)
+        {
+            return SubProdutoBLL.listarSubprodutos(idProduto);
         }
         //Clients.All.ReceberMensagem(mensagem);
         //Clients.All.mesaReservadaAgora(1);

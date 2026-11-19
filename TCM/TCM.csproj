@@ -108,9 +108,13 @@
   <ItemGroup>
     <Compile Include="BLL\MesaBLL.cs" />
     <Compile Include="BLL\ProdutoBLL.cs" />
+    <Compile Include="BLL\SubProdutoBLL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
+    <Compile Include="DAL\SubProdutoDAL.cs" />
+    <Compile Include="Models\AlteracaoSubProduto.cs" />
     <Compile Include="Models\ConversorDataTable.cs" />
+    <Compile Include="Models\ItemComanda.cs" />
     <Compile Include="Pages\inicio.aspx.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
