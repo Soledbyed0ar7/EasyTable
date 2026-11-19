@@ -6,6 +6,7 @@ using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 using System.Data;
 using TCM.BLL;
+using TCM.Models;
 namespace TCM
 {
     public class Hubs : Hub
@@ -46,7 +47,10 @@ namespace TCM
             }
             return Convert.ToInt32(cookie.Value);
         }
+        public Dictionary<String,object>[] listarTodosProdutos()
+        {
 
+        }
         //Clients.All.ReceberMensagem(mensagem);
         //Clients.All.mesaReservadaAgora(1);
 

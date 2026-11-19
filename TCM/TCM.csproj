@@ -107,7 +107,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\MesaBLL.cs" />
+    <Compile Include="BLL\ProdutoBLL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
+    <Compile Include="DAL\ProdutoDAL.cs" />
+    <Compile Include="Models\ConversorDataTable.cs" />
     <Compile Include="Pages\inicio.aspx.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -148,7 +151,6 @@
   <ItemGroup>
     <Folder Include="Assets\img\" />
     <Folder Include="Assets\js\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
