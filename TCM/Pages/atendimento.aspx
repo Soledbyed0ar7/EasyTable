@@ -42,7 +42,12 @@
 
                         <button id="fecharModal"> <- </button>
 
+
+
                         <div class="descricaoDoProduto"> </div>
+
+
+                        <div id="linhaSubProdutos"> </div>
 
                     </div>
                 </div>
@@ -156,6 +161,21 @@
                 area.appendChild(descricao);
             }
 
+            function criarLinhaSubProduto(subproduto) {
+                let espaco = document.getElementById("linhaSubProdutos");
+
+        
+            }
+
+            function gerarListaSubProdutos(listarSubprodutos) {
+                let espaco = document.getElementById("listaSubprodutos");
+                listarSubprodutos.forEach(function (subproduto) {
+                    
+                    let linha = criarLinhaSubProduto(subproduto);
+                    linha.dataset.id = subproduto.id;
+
+                espaco.appendChild(linha);
+             )};
 
 
 
