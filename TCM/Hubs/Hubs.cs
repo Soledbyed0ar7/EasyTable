@@ -37,6 +37,15 @@ namespace TCM
 
             Clients.Group("ReservandoMesa").mesaLiberadaAgora(num);
         }
+        public int mesaCookie()
+        {
+            var cookie = HttpContext.Current.Request.Cookies["mesa"];
+            if(cookie == null )
+            {
+                return -1;
+            }
+            return Convert.ToInt32(cookie.Value);
+        }
 
         //Clients.All.ReceberMensagem(mensagem);
         //Clients.All.mesaReservadaAgora(1);

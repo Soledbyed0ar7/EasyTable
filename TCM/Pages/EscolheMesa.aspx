@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EscolheMesa.aspx.cs" Inherits="TCM.index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="EscolheMesa.aspx.cs" Inherits="TCM.index" %>
 
 <!DOCTYPE html>
 
@@ -10,6 +10,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
         <div>
             <div id="areaDasMesas">
 
@@ -65,7 +66,9 @@
                     botao.onclick = function () {
                         let numero = Number(botao.textContent);
                         hub.server.reservarMesa(numero).done(function () {
-                            sessionStorage.setItem("mesa", numero);
+                            console.log("a");
+                            PageMethods.SelecionarMesa(numero);
+                            console.log("b");
                             window.location.href = '<%= ResolveUrl("~/Pages/atendimento.aspx") %>';
                         });
  };
@@ -123,19 +126,22 @@
 
 
             function limparMesaQuandousada() {
-
-                let mesa = sessionStorage.getItem("mesa");
-
-                if (mesa) {
-                    return hub.server.liberarMesa(Number(mesa)).done(function () {
-                        sessionStorage.removeItem("mesa");
-                    });
-                }
+                
+                return hub.server.mesaCookie().done(function (mesa) {
+                    
+                    if (mesa != -1) {
+                        
+                        hub.server.liberarMesa(Number(mesa)).done(function () {
+                            
+                            PageMethods.DeselecionarMesa(mesa);
+                        });
+                    }
+                 });
 
                 return $.Deferred().resolve().promise();
             }
 
-            window.addEventListener("pageshow", function (event) {
+            /*window.addEventListener("pageshow", function (event) {
 
                 
 
@@ -143,7 +149,7 @@
 
                 
 
-            });
+            });*/
 
         });
 
