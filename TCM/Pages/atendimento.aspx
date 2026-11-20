@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 
-    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/cardapio.css") %>"
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/cardapio.css") %>" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div id="tudo">
             <div class="header">
-
+                <img src="<%= ResolveUrl("~/Assets/img/logo.png") %>" class="icone"/>;
             </div>
             <div class="carouselOfertas">
 
@@ -84,7 +84,7 @@
                 gerarCardapio(hub.server.listarTodosProdutos());
 
                                 
-            )};
+            });
 
                 function criarProdutos(produtos) { // recebe aqui as info dos produtos e cria os elementos das caixas dos pedidos
 
@@ -196,7 +196,7 @@
 
 
 
-        )};
+        });
     </script>
 </body>
 </html>

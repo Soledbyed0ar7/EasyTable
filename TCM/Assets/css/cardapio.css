@@ -1,6 +1,7 @@
 ﻿body {
     background-color: #f1e6d6;
-
+    margin: 0;
+    padding: 0;
 }
 
 .slotProduto {
@@ -40,4 +41,22 @@
     background-color: white;
     border-radius: 15px;
     padding: 25px;
+}
+
+/* site geral*/
+
+.icone {
+    margin-left: 1.5vw;
+}
+
+.header {
+    background-color: #0f0b0b;
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    margin: ;
+
+
+
 }
