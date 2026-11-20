@@ -57,6 +57,12 @@ namespace TCM
         {
             return SubProdutoBLL.listarSubprodutos(idProduto);
         }
+        public void salvarItemNoPedido(Dictionary<String, object> dados)
+        {
+            ItemBLL.salvarItemNoPedido(dados);
+        }
+
+
         //Clients.All.ReceberMensagem(mensagem);
         //Clients.All.mesaReservadaAgora(1);
 
