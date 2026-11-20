@@ -79,115 +79,124 @@
 
             var hub = $.connection.hubs;
 
-            function criarProdutos(produtos) { // recebe aqui as info dos produtos e cria os elementos das caixas dos pedidos
+            $.connection.hub.start().done(function () {
+
+                gerarCardapio(hub.server.listarTodosProdutos());
+
+                                
+            )};
+
+                function criarProdutos(produtos) { // recebe aqui as info dos produtos e cria os elementos das caixas dos pedidos
 
 
-                function abrirModalProduto() {
-                    document.getElementById("modalProduto").style.display="flex";
+                    function abrirModalProduto() {
+                        document.getElementById("modalProduto").style.display = "flex";
+                    }
+
+                    function fecharModalProduto() {
+                        document.getElementById("modalProduto").style.display = "none";
+                    }
+
+
+
+                    let slot = document.createElement("div");
+                    slot.className = "slotProduto";
+
+                    slot.addEventListener("click", function () { // aq é a função pra abrir o modal lá do produto
+                        abrirModalProduto();
+
+                    });
+
+                    document.getElementById("fecharModal").addEventListener("click", fecharModalProduto);
+
+                    let nome = document.createElement("h3");
+                    nome.textContent = produto.nome;
+                    nome.className = "nomeProduto";
+
+
+
+                    let foto = document.createElement("img");
+                    foto.src = produto.imagem;
+                    foto.className = "imagemProduto";
+
+
+
+                    let preco = document.createElement("p");
+                    preco.textContent = "R$ " + produto.preco;
+
+                    slot.appendChild(foto);
+                    slot.appendChild(nome);
+                    slot.appendChild(preco);
+
+                    return slot;
+
                 }
 
-                function fecharModalProduto() {
-                    document.getElementById("modalProduto").style.display = "none";
+
+
+                function gerarCardapio(listaProdutos) {
+
+                    let guardar = document.getElementById("slotsProdutos"); // falta organizar aonde gerar o cardápio (tipo, se ele vai ser gerado como promoção, como dias da semana, etc)
+
+                    listaProdutos.forEach(function (produto) { // vai pegar cada produto que vai tar guardado no array listaProdutos, ai vai criar a pora toda ali com o método de cima de criarProdutos (que vaig erar o negócio certinho)
+
+                        let slot = criarProduto(produto);
+
+                        guardar.appendChild(slot);
+
+                    });
+
                 }
 
 
 
-                let slot = document.createElement("div");
-                slot.className = "slotProduto";
 
-                slot.addEventListener("click", function () { // aq é a função pra abrir o modal lá do produto
-                    abrirModalProduto();
+                function preencherModalProduto(produto) {
 
-                });
+                    let area = document.getElementById("descricaoDoProduto");
 
-                document.getElementById("fecharModal").addEventListener("click", fecharModalProduto);
+                    let foto = document.createElement("img");
+                    foto.src = "/Assets/img/" + produto.img;
 
-                let nome = document.createElement("h3");
-                nome.textContent = produto.nome;
-                nome.className = "nomeProduto";
-                
-                
+                    let nome = document.createElement("h2");
+                    nome.textContent = produto.nome;
 
-                let foto = document.createElement("img");
-                foto.src = produto.imagem;
-                foto.className = "imagemProduto";
-                
+                    let descricao = document.createElement("p");
+                    descricao.textContent = produto.descricao;
 
+                    area.appendChild(nome);
+                    area.appendChild(descricao);
+                }
 
-                let preco = document.createElement("p");
-                preco.textContent = "R$ " + produto.preco;
-
-                slot.appendChild(foto);
-                slot.appendChild(nome);
-                slot.appendChild(preco);
-
-                return slot;
-
-            }
-            
+                function criarLinhaSubProduto(subproduto) {
+                    let espaco = document.getElementById("linhaSubProdutos");
 
 
-            function gerarCardapio(listaProdutos) {
+                }
 
-                let guardar = document.getElementById("slotsProdutos"); // falta organizar aonde gerar o cardápio (tipo, se ele vai ser gerado como promoção, como dias da semana, etc)
+                function gerarListaSubProdutos() {
 
-                listaProdutos.forEach(function (produto) { // vai pegar cada produto que vai tar guardado no array listaProdutos, ai vai criar a pora toda ali com o método de cima de criarProdutos (que vaig erar o negócio certinho)
+                    let espaco = document.getElementById("listaSubprodutos");
+                    listarSubprodutos.forEach(function (subproduto) {
 
-                    let slot = criarProduto(produto);
+                        let linha = criarLinhaSubProduto(subproduto);
+                        linha.dataset.id = subproduto.id;
 
-                    guardar.appendChild(slot);
-
-                });
-
-            }
+                        espaco.appendChild(linha);
+             )
+                };
 
 
 
-
-            function preencherModalProduto(produto) {
-
-                let area = document.getElementById("descricaoDoProduto");
-
-                let foto = document.createElement("img");
-                foto.src = "/Assets/img/" + produto.img;
-
-                let nome = document.createElement("h2");
-                nome.textContent = produto.nome;
-
-                let descricao = document.createElement("p");
-                descricao.textContent = produto.descricao;
-
-                area.appendChild(nome);
-                area.appendChild(descricao);
-            }
-
-            function criarLinhaSubProduto(subproduto) {
-                let espaco = document.getElementById("linhaSubProdutos");
-
-        
-            }
-
-            function gerarListaSubProdutos(listarSubprodutos) {
-                let espaco = document.getElementById("listaSubprodutos");
-                listarSubprodutos.forEach(function (subproduto) {
-                    
-                    let linha = criarLinhaSubProduto(subproduto);
-                    linha.dataset.id = subproduto.id;
-
-                espaco.appendChild(linha);
-             )};
-
-
-
-            function abrirCarrinho() {
-                //tem que fazer aq ainda, mas a ideia é daí ele abrir o modal, e vai ter que pegar os dados, puxar os dados lá pra atualizaar as listas já no modal do carrinho depois
-            }
+                function abrirCarrinho() {
+                    //tem que fazer aq ainda, mas a ideia é daí ele abrir o modal, e vai ter que pegar os dados, puxar os dados lá pra atualizaar as listas já no modal do carrinho depois
+                }
 
 
 
 
 
-        });
+        )};
     </script>
 </body>
 </html>
