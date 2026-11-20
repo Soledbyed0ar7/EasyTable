@@ -29,7 +29,7 @@
                 </h1>
 
                 
-                <div class="slotsProdutos">
+                <div id="slotsProdutos" class="slotsProdutos">
 
                 </div>
             </div>
@@ -44,7 +44,7 @@
 
 
 
-                        <div class="descricaoDoProduto"> </div>
+                        <div id="descricaoDoProduto"> </div>
 
 
                         <div id="linhaSubProdutos"> </div>
@@ -61,10 +61,10 @@
             <div class="carrinhoFixo">
                 <!-- tem que meter o icone do carrinho aq -->
                 <div class="listaAtualCarrinho">
-
+                    <button onclick="abrirCarrinho()">Ver pedido</button>
                 </div>
 
-                <button onclick="abrirCarrinho()">Ver pedido</button>
+                
 
                 
             </div>
@@ -79,64 +79,56 @@
 
             var hub = $.connection.hubs;
 
-            $.connection.hub.start().done(function () {
+            function abrirModalProduto() {
+                document.getElementById("modalProduto").style.display = "flex";
+            }
 
-                gerarCardapio(hub.server.listarTodosProdutos());
+            function fecharModalProduto() {
+                document.getElementById("modalProduto").style.display = "none";
+            }
 
-                                
-            });
-
-                function criarProdutos(produtos) { // recebe aqui as info dos produtos e cria os elementos das caixas dos pedidos
-
-
-                    function abrirModalProduto() {
-                        document.getElementById("modalProduto").style.display = "flex";
-                    }
-
-                    function fecharModalProduto() {
-                        document.getElementById("modalProduto").style.display = "none";
-                    }
+            document.getElementById("fecharModal").addEventListener("click", fecharModalProduto);
 
 
 
-                    let slot = document.createElement("div");
-                    slot.className = "slotProduto";
-
-                    slot.addEventListener("click", function () { // aq é a função pra abrir o modal lá do produto
-                        abrirModalProduto();
-
-                    });
-
-                    document.getElementById("fecharModal").addEventListener("click", fecharModalProduto);
-
-                    let nome = document.createElement("h3");
-                    nome.textContent = produto.nome;
-                    nome.className = "nomeProduto";
+            function criarProduto(produto) { // recebe aqui as info dos produtos e cria os elementos das caixas dos pedidos
 
 
-
-                    let foto = document.createElement("img");
-                    foto.src = produto.imagem;
-                    foto.className = "imagemProduto";
+                let slot = document.createElement("div");
+                slot.className = "slotProduto";
 
 
+                let nome = document.createElement("h3");
+                nome.textContent = produto.nome;
+                nome.className = "nomeProduto";
 
-                    let preco = document.createElement("p");
-                    preco.textContent = "R$ " + produto.preco;
+                let foto = document.createElement("img");
+                foto.src = produto.imagem;
+                foto.className = "imagemProduto";
 
-                    slot.appendChild(foto);
-                    slot.appendChild(nome);
-                    slot.appendChild(preco);
+                let preco = document.createElement("p");
+                preco.textContent = "R$ " + produto.preco;
 
-                    return slot;
+                slot.appendChild(foto);
+                slot.appendChild(nome);
+                slot.appendChild(preco);
 
-                }
 
+                slot.addEventListener("click", function () { // aq é a função pra abrir o modal lá do produto
+                    abrirModalProduto();
+
+                });
+
+                return slot;
+
+            };
 
 
                 function gerarCardapio(listaProdutos) {
 
                     let guardar = document.getElementById("slotsProdutos"); // falta organizar aonde gerar o cardápio (tipo, se ele vai ser gerado como promoção, como dias da semana, etc)
+
+                    guardar.innerHTML = ""; //aproveita aq pra limpar qualquer coisa que tenha anterior
 
                     listaProdutos.forEach(function (produto) { // vai pegar cada produto que vai tar guardado no array listaProdutos, ai vai criar a pora toda ali com o método de cima de criarProdutos (que vaig erar o negócio certinho)
 
@@ -149,6 +141,29 @@
                 }
 
 
+            $.connection.hub.start().done(function () { // aq começa o signal R
+
+
+                hub.server.listarTodosProdutos().done(function (listaProdutos) {
+
+                    console.log("Produtos recebidos:", listaProdutos); // temporário
+
+                    gerarCardapio(listaProdutos);
+
+                    
+
+                });
+                                
+            })
+            .fail(function (erro) { // recomendado, pra avisar se nao conectar direito
+
+                console.error("Erro ao conectar ao SignalR:", erro);
+
+            });
+            
+            
+
+                // daqui pra baixo é outra coisa
 
 
                 function preencherModalProduto(produto) {
@@ -156,7 +171,7 @@
                     let area = document.getElementById("descricaoDoProduto");
 
                     let foto = document.createElement("img");
-                    foto.src = "/Assets/img/" + produto.img;
+                    foto.src = produto.imagem;
 
                     let nome = document.createElement("h2");
                     nome.textContent = produto.nome;
@@ -164,6 +179,7 @@
                     let descricao = document.createElement("p");
                     descricao.textContent = produto.descricao;
 
+                    area.appendChild(foto);
                     area.appendChild(nome);
                     area.appendChild(descricao);
                 }
@@ -171,20 +187,22 @@
                 function criarLinhaSubProduto(subproduto) {
                     let espaco = document.getElementById("linhaSubProdutos");
 
-
                 }
 
-                function gerarListaSubProdutos() {
+            function gerarListaSubProdutos(listaSubprodutos) {
 
-                    let espaco = document.getElementById("listaSubprodutos");
-                    listarSubprodutos.forEach(function (subproduto) {
+                let espaco = document.getElementById("listaSubprodutos");
 
-                        let linha = criarLinhaSubProduto(subproduto);
-                        linha.dataset.id = subproduto.id;
+                listarSubprodutos.forEach(function (subproduto) {
 
-                        espaco.appendChild(linha);
-             )
-                };
+                    let linha = criarLinhaSubProduto(subproduto);
+
+                    linha.dataset.id = subproduto.id;
+
+                    espaco.appendChild(linha);
+
+                });
+            }
 
 
 
@@ -194,9 +212,9 @@
 
 
 
-
-
         });
+
+        
     </script>
 </body>
 </html>

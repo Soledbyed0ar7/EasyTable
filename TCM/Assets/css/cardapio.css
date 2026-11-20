@@ -1,10 +1,11 @@
 ﻿body {
     background-color: #f1e6d6;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
-.slotProduto {
+.slotsProdutos {
     display: flex;
     flex-direction: column;
     border: inset white 1.2px;
@@ -17,7 +18,7 @@
     font-size: 1.2rem;
      
 }
-.slotProduto:hover {
+.slotsProdutos:hover {
     cursor: pointer;
     /* mais efeito pra meter aqui depois de hover*/
 }
@@ -54,9 +55,16 @@
     width: 100vw;
     height: 15vh;
     display: flex;
+    flex-direction: row
+
+}
+
+.carrinhoFixo {
+    background-color: #0f0b0b;
+    width: 100vw;
+    height: 12vw;
+    display: flex;
     flex-direction: row;
-    margin: ;
-
-
-
+    position: fixed;
+    margin-bottom: 0
 }
