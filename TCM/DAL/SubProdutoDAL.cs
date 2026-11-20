@@ -15,5 +15,9 @@ namespace TCM.DAL
             return bd.Consultar("SELECT sp.idSubProduto ,sp.nome ,sp.valor ,ps.quantidade FROM Produto_SubProduto ps INNER JOIN SubProduto sp ON ps.idSubProduto = sp.idSubProduto WHERE ps.idProduto = @idProduto; ", 
                 BancoDados.Param("@idProduto",idProduto));
         }
+        public static decimal verPrecoUnitario(int idSubProduto)
+        {
+            return Convert.ToDecimal(bd.Consultar("SELECT valor from SubProduto where id = @idSubproduto;", BancoDados.Param("@idSubproduto", idSubProduto)));
+        }
     }
 }

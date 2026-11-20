@@ -113,6 +113,9 @@
     <Compile Include="BLL\ProdutoBLL.cs" />
     <Compile Include="BLL\SubProdutoBLL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
+    <Compile Include="DAL\PedidoDAL.cs" />
+    <Compile Include="DAL\PedidoProduto.cs" />
+    <Compile Include="DAL\PedidoProdutoSubProdutoDAL.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
     <Compile Include="DAL\SubProdutoDAL.cs" />
     <Compile Include="Models\AlteracaoSubProduto.cs" />

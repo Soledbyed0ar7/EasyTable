@@ -4,13 +4,16 @@ using System.Linq;
 using System.Web;
 using TCM.DAL;
 using System.Data;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace TCM.BLL
 {
     public class ItemBLL
     {
-        public static void salvarItemNoPedido(Dictionary<String, object> dados)
+        public static void salvarItemNoPedido(Dictionary<String, object> dados, int mesa)
         {
+            if (mesa == -1) return;
             if (dados == null) return;
             int idProduto;
             int quantidade;
@@ -23,9 +26,15 @@ namespace TCM.BLL
             {
                 quantidade = Convert.ToInt32(dados["quantidade"]);
             }
-            if (dados.ContainsKey("alteracoes"))
+            if (dados.TryGetValue("itens", out var itensObj) && itensObj is JArray itensArray)
             {
-                
+                var listaDeDicts = itensArray.ToObject<List<Dictionary<string, object>>>();
+                int idPedido = PedidoDAL.checarExistePedido(mesa);
+                if (idPedido == -1)
+                {
+                    idPedido = PedidoDAL.criarNovoPedido(mesa);
+                }
+
             }
         }
     }

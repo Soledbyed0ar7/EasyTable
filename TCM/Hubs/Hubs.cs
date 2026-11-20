@@ -59,7 +59,14 @@ namespace TCM
         }
         public void salvarItemNoPedido(Dictionary<String, object> dados)
         {
-            ItemBLL.salvarItemNoPedido(dados);
+            int valorDoCookie = -1;
+            if (Context.Request.Cookies.TryGetValue("mesa", out Cookie cookie))
+            {
+                valorDoCookie = Convert.ToInt32( cookie.Value);
+                
+                
+            }
+            ItemBLL.salvarItemNoPedido(dados,valorDoCookie);
         }
 
 
