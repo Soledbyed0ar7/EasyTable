@@ -11,7 +11,7 @@ namespace TCM.DAL
         private static readonly BancoDados bd = new BancoDados();
         public static bool existeGarcom(String nome,String senha)
         {
-            int dt = Convert.ToInt32(bd.ConsultarValor("count * from Funcionario where usuario = @nome and senha = @senha tipo = 'G' ",
+            int dt = Convert.ToInt32(bd.ConsultarValor("count(*) from Funcionario where usuario = @nome and senha = @senha and tipo = 'G' ",
                 BancoDados.Param("@nome", nome),
                 BancoDados.Param("@senha",senha)));
             if (dt == 0) return false;
