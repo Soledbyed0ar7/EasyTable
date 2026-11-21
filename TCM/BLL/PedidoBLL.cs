@@ -13,5 +13,10 @@ namespace TCM.BLL
         {
             PedidoDAL.Npv(idMesa);
         }
+        public static void AprovarPedido(int idMesa)
+        {
+            PedidoDAL.VpP(idMesa);
+        }
     }
+
 }

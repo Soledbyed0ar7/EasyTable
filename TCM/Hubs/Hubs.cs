@@ -30,6 +30,10 @@ namespace TCM
         {
             return Groups.Add(Context.ConnectionId, "ReservandoMesa");
         }
+        public Task configGarcom()
+        {
+            return Groups.Add(Context.ConnectionId, "garcom");
+        }
 
         public void liberarMesa(int num)
         {
@@ -78,9 +82,14 @@ namespace TCM
         {
             int idMesa = mesaCookie();
             PedidoBLL.MudarStatusPedido(idMesa);
-            
+            Clients.Group("garcom").avisarGarcons(idMesa);
         }
-        
+        public void avisarLiberacao(int idMesa, bool aviso)
+        {
+            PedidoBLL.AprovarPedido(idMesa);
+            //avisarCozinha
+        }
+
 
 
         //Clients.All.ReceberMensagem(mensagem);

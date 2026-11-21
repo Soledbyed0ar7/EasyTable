@@ -16,7 +16,7 @@ namespace TCM.BLL
             }
             return false;
         }
-        public static bool LogarCosinha(String nome, String senha)
+        public static bool LogarCozinha(String nome, String senha)
         {
             if (FuncionarioDAL.existeCosinha(nome, senha))
             {

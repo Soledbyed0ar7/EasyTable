@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TCM.BLL;
 
 namespace TCM
 {
@@ -17,7 +18,10 @@ namespace TCM
         protected void cadastrar_Click(object sender, EventArgs e)
         {
             String nome = user.Text;
-            String senha = senha.Text;
+            String pass  = senha.Text;
+            if (FuncionarioBLL.LogarGarcom(nome, pass)) Response.Redirect("garcom.aspx");
+            if (FuncionarioBLL.LogarCozinha(nome, pass)) Response.Redirect("cozinha.aspx");
+            if (FuncionarioBLL.LogarBalcao(nome, pass)) Response.Redirect("balcao.aspx");
         }
     }
 }

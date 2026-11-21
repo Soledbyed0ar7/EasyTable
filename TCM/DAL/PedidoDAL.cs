@@ -42,5 +42,15 @@ namespace TCM.DAL
                 BancoDados.Param("@idMesa", idMesa)
             );
         }
+        public static void VpP(int idMesa)
+        {
+            bd.Executar(
+                @"UPDATE Pedido
+                  SET estadoPedido = 'P'
+                  WHERE idMesa = @idMesa
+                  AND estadoPedido = 'V'",
+                BancoDados.Param("@idMesa", idMesa)
+            );
+        }
     }
 }
