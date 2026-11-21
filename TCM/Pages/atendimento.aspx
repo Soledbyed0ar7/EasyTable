@@ -49,7 +49,7 @@
                 <div id="conteudoModal">
 
                     <button id="fecharModal" type="button">
-                        <i class="fa-solid fa-circle-arrow-left"></i>
+                        <i class="fa-solid fa-circle-arrow-left" style="color: white; font-size: 2rem;background-color: none"></i>
                     </button>
 
                     <div id="descricaoDoProduto"></div>
@@ -785,6 +785,9 @@
 
                         quantidade.textContent = subproduto.quantidadeSelecionada;
 
+                    }
+                    else {
+                        subproduto.st
                     }
 
                 });
