@@ -92,7 +92,13 @@
     <Content Include="Assets\css\escolherMesa.css" />
     <Content Include="Assets\css\inicio.css" />
     <Content Include="Assets\css\cardapio.css" />
-    <Content Include="Assets\img\logo.png" />
+    <Content Include="Assets\img\batata.jpg" />
+    <Content Include="Assets\img\hamburguer-bacon.jpg" />
+    <Content Include="Assets\img\hamburguer.jpg" />
+    <Content Include="Assets\img\logocerta.png" />
+    <Content Include="Assets\img\milkshake.jpg" />
+    <Content Include="Assets\img\fundo.jpg" />
+    <Content Include="Assets\img\refrigerante.jpg" />
     <Content Include="Pages\inicio.aspx" />
     <Content Include="Pages\atendimento.aspx" />
     <Content Include="Pages\EscolheMesa.aspx" />
