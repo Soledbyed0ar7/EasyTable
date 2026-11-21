@@ -11,7 +11,7 @@ namespace TCM.BLL
 {
     public class ItemBLL
     {
-
+        
         public static void salvarItemNoPedido(Dictionary<String, object> dados, int mesa)
         {
             if (mesa == -1) return;
@@ -61,6 +61,10 @@ namespace TCM.BLL
                     );
                 }
             }
+        }
+        public static Dictionary<string, object>[] MostrarCarinho(int idMesa)
+        {
+            return PedidoProdutoSubProdutoDAL.verCarrinho(idMesa);
         }
 
     }

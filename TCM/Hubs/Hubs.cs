@@ -68,6 +68,12 @@ namespace TCM
             }
             ItemBLL.salvarItemNoPedido(dados,valorDoCookie);
         }
+        public Dictionary<String,object>[] montarCarrinho()
+        {
+            int idMesa = mesaCookie();
+            return ItemBLL.MostrarCarinho(idMesa);
+
+        }
 
 
         //Clients.All.ReceberMensagem(mensagem);

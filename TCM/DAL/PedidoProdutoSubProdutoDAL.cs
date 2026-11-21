@@ -22,5 +22,11 @@ namespace TCM.DAL
             BancoDados.Param("@precoUnitario", precoUnitario)
         );
         }
+        public static Dictionary<string, object>[] verCarrinho(int mesa)
+        {
+            DataTable dt = PedidoProdutoDAL.verCarrinho(mesa);
+
+            return ConversorDataTable.ConversorPedidoProdutoSubProduto(dt);
+        }
     }
 }

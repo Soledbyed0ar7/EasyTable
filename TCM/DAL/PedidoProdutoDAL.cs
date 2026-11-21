@@ -23,5 +23,10 @@ namespace TCM.DAL
                  ));
             return idPedidoProduto;
         }
+        public static DataTable verCarrinho(int mesa)
+        {
+            return bd.Consultar("SELECT pp.idPedidoProduto, p.idProduto, p.nome, pp.quantidade, p.valor + SUM(CASE WHEN COALESCE(ppsp.quantidade, psp.quantidade, 0) > COALESCE(psp.quantidade, 0) THEN (COALESCE(ppsp.quantidade, psp.quantidade, 0) - COALESCE(psp.quantidade, 0)) * COALESCE(sp.valor, 0) ELSE 0 END) OVER (PARTITION BY pp.idPedidoProduto) AS precoUnitarioFinal, psp.idSubProduto, sp.nome AS nomeSubProduto, COALESCE(psp.quantidade, 0) AS quantidadePadrao, COALESCE(ppsp.quantidade, psp.quantidade, 0) AS quantidadeEscolhida, sp.valor AS precoSubProduto FROM Pedido ped INNER JOIN PedidoProduto pp ON ped.idPedido = pp.idPedido INNER JOIN Produto p ON pp.idProduto = p.idProduto LEFT JOIN Produto_SubProduto psp ON psp.idProduto = pp.idProduto LEFT JOIN SubProduto sp ON sp.idSubProduto = psp.idSubProduto LEFT JOIN PedidoProduto_SubProduto ppsp ON ppsp.idPedidoProduto = pp.idPedidoProduto AND ppsp.idSubProduto = psp.idSubProduto WHERE ped.idMesa = @idMesa AND ped.estadoPedido = 'N' ORDER BY pp.idPedidoProduto;",
+                BancoDados.Param("@idMesa", mesa));
+        }
     }
 }
