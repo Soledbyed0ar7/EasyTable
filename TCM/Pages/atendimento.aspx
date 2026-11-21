@@ -918,7 +918,15 @@
                 }
 
 
-                hub.server.finalizarPedido();
+                console.log("Chamando FinalizarPedido");
+
+                hub.server.finalizarPedido()
+                    .done(function () {
+                        console.log("Método do Hub executado");
+                    })
+                    .fail(function (erro) {
+                        console.error("Falha no método:", erro);
+                    });
 
             });
 
