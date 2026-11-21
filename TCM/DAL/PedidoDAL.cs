@@ -8,13 +8,13 @@ namespace TCM.DAL
 {
     public class PedidoDAL
     {
-        static readonly BancoDados bd = new BancoDados();
+        private static readonly BancoDados bd = new BancoDados();
         public static int criarNovoPedido(int idMesa)
         {
             object resultado = bd.ConsultarValor(
             @"INSERT INTO Pedido (idMesa, estadoPedido, desconto)
-              OUTPUT INSERTED.idPedidoProduto
-              VALUES (@idPedido, @idProduto, @quantidade, @precoUnitario)",
+              OUTPUT INSERTED.idPedido
+              VALUES (@idMesa, @estadoPedido, @desconto)",
             BancoDados.Param("@idMesa", idMesa),
             BancoDados.Param("@estadoPedido", "N"),
             BancoDados.Param("@desconto", Convert.ToDecimal(10.00))

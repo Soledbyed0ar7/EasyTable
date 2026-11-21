@@ -105,6 +105,7 @@
     <Content Include="Scripts\jquery.signalR-2.4.3.js" />
     <Content Include="Scripts\jquery.signalR-2.4.3.min.js" />
     <Content Include="Tests\featuresAtendimento.aspx" />
+    <Content Include="Tests\featuresSalvarBancoPedido.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -114,13 +115,14 @@
     <Compile Include="BLL\SubProdutoBLL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
     <Compile Include="DAL\PedidoDAL.cs" />
-    <Compile Include="DAL\PedidoProduto.cs" />
+    <Compile Include="DAL\PedidoProdutoDAL.cs" />
     <Compile Include="DAL\PedidoProdutoSubProdutoDAL.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
     <Compile Include="DAL\SubProdutoDAL.cs" />
     <Compile Include="Models\AlteracaoSubProduto.cs" />
     <Compile Include="Models\ConversorDataTable.cs" />
     <Compile Include="Models\ItemComanda.cs" />
+    <Compile Include="Models\TesteItem.cs" />
     <Compile Include="Pages\inicio.aspx.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -152,6 +154,13 @@
     </Compile>
     <Compile Include="Tests\featuresAtendimento.aspx.designer.cs">
       <DependentUpon>featuresAtendimento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\featuresSalvarBancoPedido.aspx.cs">
+      <DependentUpon>featuresSalvarBancoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tests\featuresSalvarBancoPedido.aspx.designer.cs">
+      <DependentUpon>featuresSalvarBancoPedido.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

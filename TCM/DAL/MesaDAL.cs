@@ -8,7 +8,7 @@ namespace TCM.DAL
 {
     public class MesaDAL
     {
-        static readonly BancoDados bd = new BancoDados();
+        private static readonly BancoDados bd = new BancoDados();
         public static int buscarQuantidadeDeMesas()
         {
             

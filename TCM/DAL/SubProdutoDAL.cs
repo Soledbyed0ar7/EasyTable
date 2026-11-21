@@ -17,7 +17,7 @@ namespace TCM.DAL
         }
         public static decimal verPrecoUnitario(int idSubProduto)
         {
-            return Convert.ToDecimal(bd.Consultar("SELECT valor from SubProduto where id = @idSubproduto;", BancoDados.Param("@idSubproduto", idSubProduto)));
+            return Convert.ToDecimal(bd.ConsultarValor("SELECT valor from SubProduto where idSubProduto = @idSubproduto;", BancoDados.Param("@idSubproduto", idSubProduto)));
         }
     }
 }
