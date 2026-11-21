@@ -30,7 +30,7 @@
             <asp:TextBox ID="senha" runat="server"></asp:TextBox>
 
 
-            <asp:Button ID="cadastrar" runat="server" Text="Cadastrar" class="btnCadastrar"/>
+            <asp:Button ID="cadastrar" runat="server" Text="Cadastrar" class="btnCadastrar" OnClick="cadastrar_Click"/>
 
             </div>
 

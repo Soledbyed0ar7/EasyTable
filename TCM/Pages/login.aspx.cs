@@ -13,5 +13,11 @@ namespace TCM
         {
 
         }
+
+        protected void cadastrar_Click(object sender, EventArgs e)
+        {
+            String nome = user.Text;
+            String senha = senha.Text;
+        }
     }
 }
