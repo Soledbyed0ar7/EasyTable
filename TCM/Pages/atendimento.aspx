@@ -60,6 +60,10 @@
 
                         <div id="linhaSubProdutos"> </div>
 
+                        <button id="adicionarAoCarrinho" type="button" disabled>
+                            Adicionar ao Carrinho
+                        </button>
+
                     </div>
                 </div>
 
@@ -70,16 +74,76 @@
             </div>
 
             <div class="carrinhoFixo">
-                <!-- tem que meter o icone do carrinho aq -->
-                <div class="listaAtualCarrinho">
-                    <button onclick="abrirCarrinho()">Ver pedido</button>
+
+                <div class="listaAtualCarrinho" id="listaAtualCarrinho">
+
+                    <!-- Os produtos atuais serão criados pelo JavaScript -->
+
                 </div>
 
-                
+                <div class="resumoCarrinho">
 
-                
+                    <div class="totalCarrinho">
+                        <span>Total:</span>
+                        <span id="valorTotalCarrinho">R$ 0,00</span>
+                    </div>
+
+                    <button type="button" id="abrirCarrinho">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                        <span id="quantidadeCarrinho">0</span>
+
+                    </button>
+
+                </div>
+
             </div>
+
+
+                    <div id="modalCarrinho">
+
+            <div id="conteudoModalCarrinho">
+
+                <div class="cabecalhoModalCarrinho">
+
+                    <h2>Meu Carrinho</h2>
+
+                    <button type="button" id="fecharCarrinho">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                </div>
+
+                <div id="listaCompletaCarrinho">
+
+                    <!-- Os produtos serão criados pelo JavaScript -->
+
+                </div>
+
+                <div class="rodapeModalCarrinho">
+
+                    <div class="totalModalCarrinho">
+
+                        <span>Total do pedido:</span>
+
+                        <span id="valorTotalModal">R$ 0,00</span>
+
+                    </div>
+
+                    <button type="button" id="finalizarPedido">
+                        Finalizar pedido
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
+
+
+            </div>
     </form>
 
     <script src="<%= ResolveUrl("~/Scripts/jquery-3.7.1.min.js") %>"></script>
@@ -92,7 +156,294 @@
 
             let subprodutosDoModal = []; // ???
 
+            let produtoAtualNoModal = null;
+            let subprodutosCarregados = false;
+
+            let itensCarrinho = [];
+            let proximoIdLocal = 1;
+
+            function converterNumero(valor) {
+
+                let texto = String(valor).trim().replace(/[^\d,.-]/g, "");
+
+                if (texto.includes(",")) {
+                    texto = texto.replace(/\./g, "").replace(",", ".");
+                }
+
+                return Number(texto) || 0;
+
+            }
+
+            function criarItemCarrinhoLocal(produto) {
+
+                let alteracoes = subprodutosDoModal.map(function (subproduto) {
+
+                    return {
+
+                        idSubProduto: subproduto.idSubProduto,
+
+                        nome: subproduto.nome,
+
+                        quantidade: subproduto.quantidadeSelecionada - subproduto.quantidade,
+
+                        precoUnitario: converterNumero(subproduto.valor)
+
+                    };
+
+                }).filter(function (alteracao) {
+
+                    return alteracao.quantidade !== 0;
+
+                });
+
+
+                let precoBase = converterNumero(produto.valor);
+
+                let valorAdicionais = alteracoes.reduce(function (total, alteracao) {
+
+                    if (alteracao.quantidade > 0) {
+
+                        return total + (alteracao.quantidade * alteracao.precoUnitario);
+
+                    }
+
+                    return total;
+
+                }, 0);
+
+
+                let precoUnitario = precoBase + valorAdicionais;
+
+                return {
+
+                    idLocal: proximoIdLocal++,
+
+                    idProduto: produto.idProduto,
+
+                    nome: produto.nome,
+
+                    quantidade: 1,
+
+                    precoUnitario: precoUnitario,
+
+                    precoTotal: precoUnitario,
+
+                    alteracoes: alteracoes
+
+                };
+
+            }
+
+            function criarItemResumo(item) {
+
+                let linha = document.createElement("div");
+                linha.className = "itemResumoCarrinho";
+
+                let nome = document.createElement("span");
+                nome.textContent = item.quantidade + "x " + item.nome;
+
+                let preco = document.createElement("span");
+                preco.textContent = formatarMoeda(item.precoTotal);
+
+                linha.appendChild(nome);
+                linha.appendChild(preco);
+
+                return linha;
+
+            }
+
+
+            function atualizarRodapeCarrinho() {
+
+                let lista = document.getElementById("listaAtualCarrinho");
+
+                let total = 0;
+                let quantidadeTotal = 0;
+
+                lista.innerHTML = "";
+
+                itensCarrinho.forEach(function (item) {
+
+                    lista.appendChild(criarItemResumo(item));
+
+                    total += item.precoTotal;
+                    quantidadeTotal += item.quantidade;
+
+                });
+
+                document.getElementById("valorTotalCarrinho").textContent =
+                    formatarMoeda(total);
+
+                document.getElementById("quantidadeCarrinho").textContent =
+                    quantidadeTotal;
+
+            }
+
+            function criarItemCarrinho(item) {
+
+                let caixa = document.createElement("div");
+                caixa.className = "itemCarrinhoCompleto";
+
+                let nome = document.createElement("h3");
+                nome.textContent = item.nome;
+
+                let precoUnitario = document.createElement("p");
+                precoUnitario.textContent =
+                    "Preço individual: " + formatarMoeda(item.precoUnitario);
+
+                let modificacoes = document.createElement("div");
+                modificacoes.className = "modificacoesCarrinho";
+
+                item.alteracoes.forEach(function (alteracao) {
+
+                    let texto = document.createElement("p");
+
+                    let sinal = alteracao.quantidade > 0 ? "+" : "";
+
+                    texto.textContent =
+                        sinal + alteracao.quantidade + "x " + alteracao.nome;
+
+                    modificacoes.appendChild(texto);
+
+                });
+
+
+                let controles = document.createElement("div");
+                controles.className = "controlesQuantidadeCarrinho";
+
+                let diminuir = document.createElement("button");
+                diminuir.type = "button";
+                diminuir.textContent = "-";
+
+                let quantidade = document.createElement("span");
+                quantidade.textContent = item.quantidade;
+
+                let aumentar = document.createElement("button");
+                aumentar.type = "button";
+                aumentar.textContent = "+";
+
+
+                diminuir.addEventListener("click", function () {
+
+                    atualizarQuantidadeItem(item.idLocal, -1);
+
+                });
+
+                aumentar.addEventListener("click", function () {
+
+                    atualizarQuantidadeItem(item.idLocal, 1);
+
+                });
+
+
+                controles.appendChild(diminuir);
+                controles.appendChild(quantidade);
+                controles.appendChild(aumentar);
+
+
+                let precoTotal = document.createElement("p");
+                precoTotal.className = "precoTotalItemCarrinho";
+                precoTotal.textContent = "Total: " + formatarMoeda(item.precoTotal);
+
+
+                caixa.appendChild(nome);
+                caixa.appendChild(precoUnitario);
+                caixa.appendChild(modificacoes);
+                caixa.appendChild(controles);
+                caixa.appendChild(precoTotal);
+
+                return caixa;
+
+            }
+
+
+            function atualizarQuantidadeItem(idLocal, alteracao) {
+
+                let item = itensCarrinho.find(function (produto) {
+
+                    return produto.idLocal === idLocal;
+
+                });
+
+                if (!item) {
+                    return;
+                }
+
+                item.quantidade += alteracao;
+
+                if (item.quantidade <= 0) {
+
+                    itensCarrinho = itensCarrinho.filter(function (produto) {
+
+                        return produto.idLocal !== idLocal;
+
+                    });
+
+                } else {
+
+                    item.precoTotal = item.precoUnitario * item.quantidade;
+
+                }
+
+                atualizarRodapeCarrinho();
+
+                gerarListaCarrinho();
+
+            }
+
+            function gerarListaCarrinho() {
+
+                let lista = document.getElementById("listaCompletaCarrinho");
+
+                lista.innerHTML = "";
+
+                if (itensCarrinho.length === 0) {
+
+                    let mensagem = document.createElement("p");
+
+                    mensagem.textContent = "Seu carrinho está vazio.";
+
+                    lista.appendChild(mensagem);
+
+                }
+
+                itensCarrinho.forEach(function (item) {
+
+                    lista.appendChild(criarItemCarrinho(item));
+
+                });
+
+
+                let total = itensCarrinho.reduce(function (soma, item) {
+
+                    return soma + item.precoTotal;
+
+                }, 0);
+
+
+                document.getElementById("valorTotalModal").textContent =
+                    formatarMoeda(total);
+
+            }
+
+
+
+
+            function formatarMoeda(valor) {
+
+                return Number(valor).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+
+            }
+
             function abrirModalProduto(produto) {
+
+                produtoAtualNoModal = produto;
+                subprodutosCarregados = false;
+
+                document.getElementById("adicionarAoCarrinho").disabled = true;
 
                 document.getElementById("modalProduto").style.display = "flex";
 
@@ -110,6 +461,10 @@
 
                         gerarListaSubProdutos(listaSubprodutos);
 
+                        subprodutosCarregados = true;
+
+                        document.getElementById("adicionarAoCarrinho").disabled = false;
+
                     })
                     .fail(function (erro) {
 
@@ -126,7 +481,71 @@
 
             document.getElementById("fecharModal").addEventListener("click", fecharModalProduto);
 
+            document.getElementById("adicionarAoCarrinho").addEventListener("click", function () {
 
+                if (!produtoAtualNoModal || !subprodutosCarregados) {
+                    return;
+                }
+
+                let botao = this;
+
+                botao.disabled = true;
+
+                let dados = {
+
+                    idProduto: produtoAtualNoModal.idProduto,
+
+                    quantidade: 1,
+
+                    alteracoes: subprodutosDoModal.map(function (subproduto) {
+
+                        return {
+
+                            idSubProduto: subproduto.idSubProduto,
+
+                            acao: subproduto.quantidadeSelecionada - subproduto.quantidade
+
+                        };
+
+                    }).filter(function (alteracao) {
+
+                        return alteracao.acao !== 0;
+
+                    })
+
+                };
+
+
+                let itemCarrinho = criarItemCarrinhoLocal(produtoAtualNoModal);
+
+
+                hub.server.salvarItemNoPedido(dados)
+
+                    .done(function () {
+
+                        console.log("Produto enviado ao backend:", dados);
+
+                        itensCarrinho.push(itemCarrinho);
+
+                        atualizarRodapeCarrinho();
+
+                        fecharModalProduto();
+
+                    })
+
+                    .fail(function (erro) {
+
+                        console.error("Erro ao enviar produto:", erro);
+
+                    })
+
+                    .always(function () {
+
+                        botao.disabled = false;
+
+                    });
+
+            });
 
 
 
@@ -210,46 +629,6 @@
 
                 // daqui pra baixo é outra coisa
 
-            /*
-                function preencherModalProduto(produto) {
-
-                    let area = document.getElementById("descricaoDoProduto");
-
-                    let foto = document.createElement("img");
-                    foto.src = produto.imagem;
-
-                    let nome = document.createElement("h2");
-                    nome.textContent = produto.nome;
-
-                    let descricao = document.createElement("p");
-                    descricao.textContent = produto.descricao;
-
-                    area.appendChild(foto);
-                    area.appendChild(nome);
-                    area.appendChild(descricao);
-                }
-
-                function criarLinhaSubProduto(subproduto) {
-                    let espaco = document.getElementById("linhaSubProdutos");
-
-                }
-
-            function gerarListaSubProdutos(listaSubprodutos) {
-
-                let espaco = document.getElementById("listaSubprodutos");
-
-                listarSubprodutos.forEach(function (subproduto) {
-
-                    let linha = criarLinhaSubProduto(subproduto);
-
-                    linha.dataset.id = subproduto.id;
-
-                    espaco.appendChild(linha);
-
-                });
-            }
-
-            */
             function preencherModalProduto(produto) {
 
                 let area = document.getElementById("descricaoDoProduto");
@@ -302,10 +681,7 @@
                 aumentar.textContent = "+";
 
 
-                let avancar = document.createElement("button");
-                avancar.type = "button";
-                avancar.textContent = "Adicionar ao Carrinho";
-                avancar.className = "avancarAoCarrinho";
+                
 
 
                 diminuir.addEventListener("click", function () {
@@ -328,13 +704,7 @@
 
                 });
 
-                avancar.addEventListener("click", function () {
-
-                    fecharModalProduto(produto);
-
-                    // TEM QUE FAZER ESSA JOMBA AQUI PRA MANDAR PRO CARRINHO MANO
-
-                });
+                
 
                 esquerda.appendChild(nome);
                 esquerda.appendChild(valor);
@@ -349,7 +719,6 @@
                 return linha;
             }
 
-                adicionarAoCarrinho //
 
             function gerarListaSubProdutos(listaSubprodutos) {
 
@@ -379,10 +748,49 @@
             }
 
 
+            function abrirCarrinho() {
 
-                function abrirCarrinho() {
-                    //tem que fazer aq ainda, mas a ideia é daí ele abrir o modal, e vai ter que pegar os dados, puxar os dados lá pra atualizaar as listas já no modal do carrinho depois
+                gerarListaCarrinho();
+
+                document.getElementById("modalCarrinho").style.display = "flex";
+
+            }
+
+
+            function fecharCarrinho() {
+
+                document.getElementById("modalCarrinho").style.display = "none";
+
+            }
+
+            document.getElementById("abrirCarrinho").addEventListener("click", abrirCarrinho);
+
+            document.getElementById("fecharCarrinho").addEventListener("click", fecharCarrinho);
+
+
+            document.getElementById("modalCarrinho").addEventListener("click", function (evento) {
+
+                if (evento.target === this) {
+
+                    fecharCarrinho();
+
                 }
+
+            });
+
+            document.getElementById("finalizarPedido").addEventListener("click", function () {
+
+                if (itensCarrinho.length === 0) {
+
+                    alert("Seu carrinho está vazio!");
+
+                    return;
+
+                }
+
+                alert("Pedido preparado! A integração para enviar a solicitação ao garçom será implementada posteriormente.");
+
+            });
 
 
 
