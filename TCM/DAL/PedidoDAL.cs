@@ -32,5 +32,15 @@ namespace TCM.DAL
             int idPedido = Convert.ToInt32(objidPedido);
             return idPedido;
         }
+        public static void Npv(int idMesa)
+        {
+            bd.Executar(
+                @"UPDATE Pedido
+                  SET estadoPedido = 'V'
+                  WHERE idMesa = @idMesa
+                  AND estadoPedido = 'N'",
+                BancoDados.Param("@idMesa", idMesa)
+            );
+        }
     }
 }

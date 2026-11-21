@@ -117,6 +117,7 @@
   <ItemGroup>
     <Compile Include="BLL\ItemBLL.cs" />
     <Compile Include="BLL\MesaBLL.cs" />
+    <Compile Include="BLL\PedidoBLL.cs" />
     <Compile Include="BLL\ProdutoBLL.cs" />
     <Compile Include="BLL\SubProdutoBLL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />

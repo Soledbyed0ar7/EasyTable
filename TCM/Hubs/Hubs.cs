@@ -74,6 +74,11 @@ namespace TCM
             return ItemBLL.MostrarCarinho(idMesa);
 
         }
+        public void FinalizarPedido()
+        {
+            int idMesa = mesaCookie();
+            PedidoBLL.MudarStatusPedido(idMesa);
+        }
 
 
         //Clients.All.ReceberMensagem(mensagem);
