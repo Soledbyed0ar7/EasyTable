@@ -17,6 +17,10 @@ namespace TCM.BLL
         {
             PedidoDAL.VpP(idMesa);
         }
+        public static void RecusarPedido(int idMesa)
+        {
+            PedidoDAL.VpC(idMesa);
+        }
     }
 
 }

@@ -86,7 +86,11 @@ namespace TCM
         }
         public void avisarLiberacao(int idMesa, bool aviso)
         {
-            PedidoBLL.AprovarPedido(idMesa);
+            if (aviso)
+            {
+                PedidoBLL.AprovarPedido(idMesa);
+            }
+            PedidoBLL.RecusarPedido(idMesa);
             //avisarCozinha
         }
 
