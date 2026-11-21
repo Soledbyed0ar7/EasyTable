@@ -115,11 +115,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\FuncionarioBLL.cs" />
     <Compile Include="BLL\ItemBLL.cs" />
     <Compile Include="BLL\MesaBLL.cs" />
     <Compile Include="BLL\PedidoBLL.cs" />
     <Compile Include="BLL\ProdutoBLL.cs" />
     <Compile Include="BLL\SubProdutoBLL.cs" />
+    <Compile Include="DAL\FuncionarioDAL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
     <Compile Include="DAL\PedidoDAL.cs" />
     <Compile Include="DAL\PedidoProdutoDAL.cs" />
