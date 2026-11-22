@@ -99,6 +99,7 @@
     <Content Include="Assets\img\milkshake.jpg" />
     <Content Include="Assets\img\fundo.jpg" />
     <Content Include="Assets\img\refrigerante.jpg" />
+    <Content Include="Pages\login.aspx" />
     <Content Include="Pages\inicio.aspx" />
     <Content Include="Pages\atendimento.aspx" />
     <Content Include="Pages\EscolheMesa.aspx" />
@@ -128,6 +129,13 @@
     <Compile Include="DAL\PedidoProdutoSubProdutoDAL.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
     <Compile Include="DAL\SubProdutoDAL.cs" />
+    <Compile Include="Pages\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AlteracaoSubProduto.cs" />
     <Compile Include="Models\ConversorDataTable.cs" />
     <Compile Include="Models\ItemComanda.cs" />
