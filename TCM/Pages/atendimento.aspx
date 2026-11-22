@@ -936,6 +936,8 @@
 
             });
 
+            hub.server.tomarBan();
+
 
             
 
