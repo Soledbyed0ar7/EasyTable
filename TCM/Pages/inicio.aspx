@@ -30,13 +30,21 @@
 
 
         window.addEventListener("scroll", function () {
-            let botao = document.getElementById("btnInicial")
-        })
 
-        document.getElementById("btnInicial").onclick = function () {
-            window.location.href = src="<%=ResolveUrl("~/Pages/EscolheMesa.aspx")%>";
-        };
+            let botao = document.getElementById("btnInicial");
 
+            if (window.scrollY > 30) {
+
+                botao.classList.add("aparecer");
+
+            }
+            else {
+
+                botao.classList.remove("aparecer");
+
+            }
+
+        });
     </script>
 </body>
 </html>

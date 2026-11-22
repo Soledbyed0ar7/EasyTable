@@ -660,6 +660,10 @@
 
                 .done(function () {
 
+
+                    hub.server.configAtendimento();
+                    
+
                     hub.server.listarTodosProdutos()
 
                         .done(function (listaProdutos) {
@@ -932,7 +936,9 @@
 
             });
 
+
             
+
 
 
             
