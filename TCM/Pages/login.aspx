@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 
-        <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/cardapio.css") %>" />
+        <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/login.css") %>" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
