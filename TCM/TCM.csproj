@@ -99,6 +99,8 @@
     <Content Include="Assets\img\milkshake.jpg" />
     <Content Include="Assets\img\fundo.jpg" />
     <Content Include="Assets\img\refrigerante.jpg" />
+    <Content Include="Pages\cozinha.aspx" />
+    <Content Include="Assets\css\cuzinho.css" />
     <Content Include="Pages\garcom.aspx" />
     <Content Include="Assets\css\garcom.css" />
     <Content Include="Assets\css\login.css" />
@@ -126,6 +128,13 @@
     <Compile Include="BLL\PedidoBLL.cs" />
     <Compile Include="BLL\ProdutoBLL.cs" />
     <Compile Include="BLL\SubProdutoBLL.cs" />
+    <Compile Include="Pages\cozinha.aspx.cs">
+      <DependentUpon>cozinha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\cozinha.aspx.designer.cs">
+      <DependentUpon>cozinha.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DAL\FuncionarioDAL.cs" />
     <Compile Include="DAL\MesaDAL.cs" />
     <Compile Include="DAL\PedidoDAL.cs" />

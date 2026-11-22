@@ -168,7 +168,7 @@
             // CARRINHO
             // ==========================================
 
-
+            /* averiguar aq  */
             function formatarMoeda(valor) {
 
                 return Number(valor).toLocaleString("pt-BR", {
@@ -861,6 +861,8 @@
 
             }
 
+            
+
 
 
             // ==========================================
@@ -929,6 +931,8 @@
                     });
 
             });
+
+            
 
 
             

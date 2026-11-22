@@ -1,0 +1,95 @@
+﻿
+body {
+    background: linear-gradient(45deg, #0d0c0c, #1d1919, #0d0c0c);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    color: white;
+    font-family: "Oswald", sans-serif;
+}
+
+.containerCozinha {
+    padding: 30px 5%;
+}
+
+.tituloCozinha {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 35px;
+}
+
+#areaPedidos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+    justify-content: center;
+    gap: 25px;
+}
+
+.cardPedido {
+    background-color: #252121;
+    border: 1px solid #514747;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 150px;
+}
+
+.cabecalhoPedido {
+    background-color: #d7ac23;
+    color: #171313;
+    padding: 12px 20px;
+}
+
+    .cabecalhoPedido h2 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+.conteudoPedido {
+    padding: 15px 20px;
+}
+
+.linhaProduto {
+    padding: 12px 0;
+    border-bottom: 1px solid #514747;
+}
+
+    .linhaProduto:last-child {
+        border-bottom: none;
+    }
+
+.informacoesProduto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+    .informacoesProduto h3 {
+        margin: 0;
+        font-size: 1.3rem;
+    }
+
+.quantidadeProduto {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d7ac23;
+}
+
+.alteracoesProduto {
+    margin-top: 8px;
+    padding-left: 10px;
+}
+
+    .alteracoesProduto p {
+        margin: 4px 0;
+        font-size: 1rem;
+    }
+
+.alteracaoAdicionar {
+    color: #75d68a;
+}
+
+.alteracaoRetirar {
+    color: #ff8585;
+}

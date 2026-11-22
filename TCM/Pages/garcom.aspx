@@ -22,7 +22,7 @@
 
         <p id="textoNotificacao"></p>
 
-        <button onclick="abrirModalLiberacao()">
+        <button onclick="abrirModalLiberacao()" type="button">
             Visualizar pedido
         </button>
 
@@ -41,11 +41,11 @@
 
         <p id="textoLiberacao"></p>
 
-        <button onclick="responderPedido(true)">
+        <button onclick="responderPedido(true)" type="button">
             Confirmar
         </button>
 
-        <button onclick="responderPedido(false)">
+        <button onclick="responderPedido(false)" type="button">
             Recusar
         </button>
 
@@ -133,6 +133,8 @@
             document.getElementById("textoLiberacao").textContent =
                 "Deseja liberar o pedido da mesa " + mesaNotificada + "?";
 
+            document.getElementById("modalNotificacao").style.display = "none";
+
             document.getElementById("modalLiberacao").style.display = "flex";
 
         }
@@ -140,12 +142,33 @@
 
         function responderPedido(liberado) {
 
-            hub.server.avisarLiberacao(mesaNotificada, liberado);
+            if (mesaNotificada === null) {
 
-            document.getElementById("modalLiberacao").style.display = "none";
-            document.getElementById("modalNotificacao").style.display = "none";
+                return;
 
-            mesaNotificada = null;
+            }
+
+            let idMesa = mesaNotificada;
+
+            hub.server.avisarLiberacao(idMesa, liberado)
+
+                .done(function () {
+
+                    console.log("Resposta enviada:", idMesa, liberado);
+
+                    document.getElementById("modalLiberacao").style.display = "none";
+
+                    document.getElementById("modalNotificacao").style.display = "none";
+
+                    mesaNotificada = null;
+
+                })
+
+                .fail(function (erro) {
+
+                    console.error("Erro ao enviar resposta:", erro);
+
+                });
 
         }
 
