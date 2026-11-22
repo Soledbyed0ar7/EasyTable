@@ -83,6 +83,7 @@ namespace TCM.DAL
         {
             return bd.Consultar(
                 @"SELECT
+            pp.idPedidoProduto,
             p.nome,
             pp.quantidade,
 
@@ -97,16 +98,16 @@ namespace TCM.DAL
         INNER JOIN Produto p
             ON pp.idProduto = p.idProduto
 
-        INNER JOIN PedidoProduto_SubProduto ppsp
+        LEFT JOIN PedidoProduto_SubProduto ppsp
             ON ppsp.idPedidoProduto = pp.idPedidoProduto
+            AND ppsp.acao <> 0
 
-        INNER JOIN SubProduto sp
+        LEFT JOIN SubProduto sp
             ON sp.idSubProduto = ppsp.idSubProduto
 
         WHERE
             ped.idMesa = @idMesa
             AND ped.estadoPedido = 'P'
-            AND ppsp.acao <> 0
 
         ORDER BY pp.idPedidoProduto;",
                 BancoDados.Param("@idMesa", mesa)
