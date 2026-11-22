@@ -30,21 +30,42 @@ namespace TCM
         {
             return Groups.Add(Context.ConnectionId, "ReservandoMesa");
         }
-        public Task configGarcom()
-        {
-            return Groups.Add(Context.ConnectionId, "garcom");
-        }
-        public Task configCozinha()
-        {
-            return Groups.Add(Context.ConnectionId, "cozinha");
-        }
         public Task configAtendimento()
         {
-            if(mesaCookie() == -1)
+
+            if (mesaCookie() == -1)
             {
                 Clients.Caller.tomarBan();
             }
             return Groups.Add(Context.ConnectionId, mesaCookie().ToString());
+        }
+        public Task configGarcom()
+        {
+            var cookie = HttpContext.Current.Request.Cookies["permicao"];
+            if (cookie == null)
+            {
+                Clients.Caller.tomarBan();
+            }
+            return Groups.Add(Context.ConnectionId, "garcom");
+        }
+        public Task configCozinha()
+        {
+            var cookie = HttpContext.Current.Request.Cookies["permicao"];
+            if (cookie == null)
+            {
+                Clients.Caller.tomarBan();
+            }
+            return Groups.Add(Context.ConnectionId, "cozinha");
+        }
+        
+        public void configBalcao()
+        {
+            var cookie = HttpContext.Current.Request.Cookies["permicao"];
+            if (cookie == null)
+            {
+                Clients.Caller.tomarBan();
+            }
+
         }
 
         public void liberarMesa(int num)

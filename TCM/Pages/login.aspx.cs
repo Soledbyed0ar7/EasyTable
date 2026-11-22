@@ -19,9 +19,34 @@ namespace TCM
         {
             String nome = user.Text;
             String pass  = senha.Text;
-            if (FuncionarioBLL.LogarGarcom(nome, pass)) Response.Redirect("garcom.aspx");
-            if (FuncionarioBLL.LogarCozinha(nome, pass)) Response.Redirect("cozinha.aspx");
-            if (FuncionarioBLL.LogarBalcao(nome, pass)) Response.Redirect("balcao.aspx");
+            if (FuncionarioBLL.LogarGarcom(nome, pass))
+            {
+                permitido();
+                Response.Redirect("garcom.aspx");
+                
+            }
+
+            if (FuncionarioBLL.LogarCozinha(nome, pass))
+            {
+                permitido();
+                Response.Redirect("cozinha.aspx");
+                
+            };
+            if (FuncionarioBLL.LogarBalcao(nome, pass))
+            {
+                permitido();
+                Response.Redirect("balcao.aspx");
+
+            }; ;
+        }
+        public void permitido()
+        {
+            HttpCookie cookie = new HttpCookie("permicao");
+
+            cookie.Value = "P";
+            cookie.Expires = DateTime.Now.AddHours(5);
+            cookie.Path = "/";
+            HttpContext.Current.Response.Cookies.Add(cookie);
         }
     }
 }
