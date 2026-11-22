@@ -100,8 +100,15 @@ namespace TCM
 
 
         }
-        
 
+        public Dictionary<String, object>[] visualizarComanda(int idMesa)
+        {
+            return BalcaoBLL.infoPedidoBalcao(idMesa);
+        }
+        public void fecharComanda(int idMesa)
+        {
+            BalcaoBLL.fecharComanda(idMesa);
+        }
 
 
         //Clients.All.ReceberMensagem(mensagem);

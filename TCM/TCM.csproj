@@ -121,6 +121,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BalcaoBLL.cs" />
     <Compile Include="BLL\CozinhaBLL.cs" />
     <Compile Include="BLL\FuncionarioBLL.cs" />
     <Compile Include="BLL\ItemBLL.cs" />

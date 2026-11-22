@@ -113,5 +113,61 @@ namespace TCM.DAL
                 BancoDados.Param("@idMesa", mesa)
             );
         }
+        public static DataTable verPedidoBalcao(int mesa)
+        {
+            return bd.Consultar(
+                @"SELECT
+            pp.idPedidoProduto,
+            p.nome,
+            pp.quantidade,
+
+            CAST(
+                (
+                    COALESCE(pp.precoUnitario, 0)
+                    +
+                    COALESCE(
+                        SUM(
+                            CASE
+                                WHEN ppsp.acao > 0
+                                THEN
+                                    ppsp.acao * COALESCE(sp.valor, 0)
+                                ELSE
+                                    0
+                            END
+                        ) OVER (
+                            PARTITION BY pp.idPedidoProduto
+                        ),
+                        0
+                    )
+                ) * pp.quantidade
+                AS DECIMAL(10,2)
+            ) AS valorTotal,
+
+            sp.nome AS nomeSubProduto,
+            ppsp.acao AS quantidadeAlteracao
+
+        FROM Pedido ped
+
+        INNER JOIN PedidoProduto pp
+            ON ped.idPedido = pp.idPedido
+
+        INNER JOIN Produto p
+            ON pp.idProduto = p.idProduto
+
+        LEFT JOIN PedidoProduto_SubProduto ppsp
+            ON ppsp.idPedidoProduto = pp.idPedidoProduto
+            AND ppsp.acao <> 0
+
+        LEFT JOIN SubProduto sp
+            ON sp.idSubProduto = ppsp.idSubProduto
+
+        WHERE
+            ped.idMesa = @idMesa
+            AND ped.estadoPedido IN ('P', 'E')
+
+        ORDER BY pp.idPedidoProduto;",
+                BancoDados.Param("@idMesa", mesa)
+            );
+        }
     }
 }
