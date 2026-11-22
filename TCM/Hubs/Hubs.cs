@@ -34,6 +34,10 @@ namespace TCM
         {
             return Groups.Add(Context.ConnectionId, "garcom");
         }
+        public Task configCozinha()
+        {
+            return Groups.Add(Context.ConnectionId, "cozinha");
+        }
 
         public void liberarMesa(int num)
         {
@@ -89,10 +93,14 @@ namespace TCM
             if (aviso)
             {
                 PedidoBLL.AprovarPedido(idMesa);
+                Clients.Group("cozinha").mostrarNovoPedido(CozinhaBLL.infoPedido(idMesa), idMesa);
             }
             PedidoBLL.RecusarPedido(idMesa);
-            //avisarCozinha
+            
+
+
         }
+        
 
 
 

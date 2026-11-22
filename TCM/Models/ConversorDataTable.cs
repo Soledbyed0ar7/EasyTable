@@ -16,7 +16,7 @@ namespace TCM.Models
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 arr[i] = new Dictionary<string, object>();
-
+                
                 foreach (DataColumn coluna in dt.Columns)
                 {
                     arr[i][coluna.ColumnName] = dt.Rows[i][coluna] == DBNull.Value
@@ -101,6 +101,66 @@ namespace TCM.Models
                             "precoUnitario",
                             Convert.ToDecimal(linha["precoSubProduto"])
                         );
+
+                        alteracoes.Add(alteracao);
+                    }
+                }
+            }
+
+            return produtos.ToArray();
+        }
+        public static Dictionary<string, object>[] ConversorPedidoCozinha(DataTable dt)
+        {
+            Dictionary<int, Dictionary<string, object>> mapa =
+                new Dictionary<int, Dictionary<string, object>>();
+
+            List<Dictionary<string, object>> produtos =
+                new List<Dictionary<string, object>>();
+
+            foreach (DataRow linha in dt.Rows)
+            {
+                int idPedidoProduto =
+                    Convert.ToInt32(linha["idPedidoProduto"]);
+
+                // Cria o produto apenas uma vez
+                if (!mapa.ContainsKey(idPedidoProduto))
+                {
+                    Dictionary<string, object> produto =
+                        new Dictionary<string, object>();
+
+                    produto.Add("nome", linha["nome"]);
+                    produto.Add(
+                        "quantidade",
+                        Convert.ToInt32(linha["quantidade"])
+                    );
+
+                    produto.Add(
+                        "alteracoes",
+                        new List<Dictionary<string, object>>()
+                    );
+
+                    mapa.Add(idPedidoProduto, produto);
+                    produtos.Add(produto);
+                }
+
+                // Adiciona a alteração, caso exista
+                if (linha["nomeSubProduto"] != DBNull.Value &&
+                    linha["quantidadeAlteracao"] != DBNull.Value)
+                {
+                    int quantidadeAlteracao =
+                        Convert.ToInt32(linha["quantidadeAlteracao"]);
+
+                    if (quantidadeAlteracao != 0)
+                    {
+                        List<Dictionary<string, object>> alteracoes =
+                            (List<Dictionary<string, object>>)
+                            mapa[idPedidoProduto]["alteracoes"];
+
+                        Dictionary<string, object> alteracao =
+                            new Dictionary<string, object>();
+
+                        alteracao.Add("nome", linha["nomeSubProduto"]);
+                        alteracao.Add("quantidade", quantidadeAlteracao);
 
                         alteracoes.Add(alteracao);
                     }
