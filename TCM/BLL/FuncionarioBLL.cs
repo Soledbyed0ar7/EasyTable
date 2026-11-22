@@ -26,7 +26,7 @@ namespace TCM.BLL
         }
         public static bool LogarBalcao(String nome, String senha)
         {
-            if (FuncionarioDAL.existeCosinha(nome, senha))
+            if (FuncionarioDAL.existeBalcao(nome, senha))
             {
                 return true;
             }
