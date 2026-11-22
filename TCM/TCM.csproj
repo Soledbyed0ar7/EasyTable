@@ -99,6 +99,8 @@
     <Content Include="Assets\img\milkshake.jpg" />
     <Content Include="Assets\img\fundo.jpg" />
     <Content Include="Assets\img\refrigerante.jpg" />
+    <Content Include="Pages\balcao.aspx" />
+    <Content Include="Assets\css\balcao.css" />
     <Content Include="Pages\cozinha.aspx" />
     <Content Include="Assets\css\cuzinho.css" />
     <Content Include="Pages\garcom.aspx" />
@@ -121,6 +123,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\balcao.aspx.cs">
+      <DependentUpon>balcao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\balcao.aspx.designer.cs">
+      <DependentUpon>balcao.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BLL\BalcaoBLL.cs" />
     <Compile Include="BLL\CozinhaBLL.cs" />
     <Compile Include="BLL\FuncionarioBLL.cs" />

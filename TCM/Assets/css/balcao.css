@@ -1,0 +1,206 @@
+﻿
+body {
+    background: linear-gradient(45deg, #0d0c0c, #1d1919, #0d0c0c);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    color: white;
+    font-family: "Oswald", sans-serif;
+}
+
+.tudo {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+    .tudo h1 {
+        font-size: 3rem;
+        margin: 0;
+    }
+
+.areaConsulta {
+    display: flex;
+    gap: 12px;
+}
+
+#numMesa {
+    width: 220px;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 1px solid #777;
+    border-radius: 6px;
+    outline: none;
+}
+
+#verConta {
+    padding: 12px 22px;
+    background-color: #d7ac23;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    #verConta:hover {
+        background-color: #f0c83d;
+    }
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.conteudoModal {
+    background-color: #211d1d;
+    border: 1px solid #514747;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.cabecalhoModal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #514747;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+    .cabecalhoModal h2 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+#fecharModal {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.produtoExtrato {
+    background-color: #302b2b;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.cabecalhoProduto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .cabecalhoProduto h3 {
+        margin: 0;
+        font-size: 1.4rem;
+    }
+
+    .cabecalhoProduto span {
+        color: #d7ac23;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+.valoresProduto {
+    margin-top: 10px;
+    border-top: 1px solid #514747;
+    padding-top: 8px;
+}
+
+    .valoresProduto p {
+        margin: 5px 0;
+    }
+
+.alteracoesProduto {
+    margin-top: 12px;
+}
+
+    .alteracoesProduto h4 {
+        margin: 0 0 5px;
+    }
+
+    .alteracoesProduto p {
+        margin: 4px 0;
+    }
+
+.alteracaoAdicionar {
+    color: #75d68a;
+}
+
+.alteracaoRetirar {
+    color: #ff8585;
+}
+
+.resumoComanda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #d7ac23;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+    .resumoComanda h3 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+#valorTotalComanda {
+    color: #d7ac23;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#fecharComanda {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background-color: #d7ac23;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    #fecharComanda:hover {
+        background-color: #f0c83d;
+    }
+
+@media (max-width: 550px) {
+    .areaConsulta {
+        flex-direction: column;
+        width: 85%;
+    }
+
+    #numMesa,
+    #verConta {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .conteudoModal {
+        padding: 18px;
+    }
+}

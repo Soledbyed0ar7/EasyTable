@@ -42,6 +42,7 @@
                 criarPedido(lista, mesa);
             };
 
+
             function criarPedido(lista, mesa) {
 
                 let card = document.createElement("div");
@@ -90,16 +91,22 @@
                             let itemAlteracao = document.createElement("p");
 
                             if (alteracao.quantidade > 0) {
+
                                 itemAlteracao.textContent =
                                     "+ Adicionar " + alteracao.nome +
                                     " (" + alteracao.quantidade + ")";
+
                                 itemAlteracao.className = "alteracaoAdicionar";
+
                             }
                             else if (alteracao.quantidade < 0) {
+
                                 itemAlteracao.textContent =
                                     "- Retirar " + alteracao.nome +
                                     " (" + Math.abs(alteracao.quantidade) + ")";
+
                                 itemAlteracao.className = "alteracaoRetirar";
+
                             }
 
                             if (alteracao.quantidade !== 0) {
@@ -115,15 +122,48 @@
 
                 });
 
+                let botaoPronto = document.createElement("button");
+
+                botaoPronto.type = "button";
+                botaoPronto.className = "botaoPedidoPronto";
+                botaoPronto.innerHTML = '<i class="fa-solid fa-check"></i> Pedido pronto';
+
+                botaoPronto.addEventListener("click", function () {
+
+                    botaoPronto.disabled = true;
+                    botaoPronto.textContent = "Pedido finalizado!";
+
+                    setTimeout(function () {
+
+                        card.style.maxHeight = card.scrollHeight + "px";
+
+                        card.offsetHeight;
+
+                        card.classList.add("removendoPedido");
+
+                        card.addEventListener("transitionend", function (evento) {
+
+                            if (evento.propertyName === "max-height") {
+                                card.remove();
+                            }
+
+                        });
+
+                    }, 1500);
+
+                });
+
                 card.appendChild(cabecalho);
                 card.appendChild(conteudo);
+                card.appendChild(botaoPronto);
 
                 document.getElementById("areaPedidos").appendChild(card);
             }
 
+
             $.connection.hub.start().done(function () {
 
-                hub.server.configCozinho();
+                hub.server.configCozinha();
 
             });
 
