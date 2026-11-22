@@ -70,6 +70,7 @@ namespace TCM.DAL
                   WHERE idMesa = @idMesa",
                 BancoDados.Param("@idMesa", idMesa)
             );
+            bd.Executar("update Mesa set estadoMesa ='L' where idMesa = @id", BancoDados.Param("@id", idMesa));
         }
     }
 }
