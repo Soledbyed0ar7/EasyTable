@@ -20,13 +20,13 @@
     <form id="form1" runat="server">
         <div class="area">
 
+            <p class="usarSenha"> Login de Funcionário </p>
 
-
-            <p class="userSenha"> </p>
+            <p class="userSenha"> Usuário: </p>
             <asp:TextBox ID="user" runat="server"></asp:TextBox>
 
 
-            <p class="userSenha"> </p>
+            <p class="userSenha"> Senha: </p>
             <asp:TextBox ID="senha" runat="server"></asp:TextBox>
 
 
