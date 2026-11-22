@@ -10,7 +10,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="inicio" class="centralizar">
+
+        <div class="telaInicial">
+
+            <img src="<%= ResolveUrl("~/Assets/img/logocerta.png") %>" class="logoInicial" />
+
+        </div>
+        <div id="inicio">
+            <asp:Button ID="btnInicial" runat="server" Text="Iniciar" type="button" class="btnIniciar centralizar"/>
         </div>
 
 
@@ -21,18 +28,10 @@
     <script src="<%= ResolveUrl("~/signalr/hubs") %>"></script>
     <script>
 
-        let box = document.getElementById("inicio");
 
-        
-        let botaoIniciar = document.createElement("button");
-        botaoIniciar.id = "btnInicial";
-        botaoIniciar.className = "btnIniciar centralizar"
-        botaoIniciar.textContent = "Iniciar"
-        botaoIniciar.type = "button";
-
-
-
-        box.appendChild(botaoIniciar);
+        window.addEventListener("scroll", function () {
+            let botao = document.getElementById("btnInicial")
+        })
 
         document.getElementById("btnInicial").onclick = function () {
             window.location.href = src="<%=ResolveUrl("~/Pages/EscolheMesa.aspx")%>";

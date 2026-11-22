@@ -20,19 +20,26 @@
     <form id="form1" runat="server">
         <div class="area">
 
-            <p class="usarSenha"> Login de Funcionário </p>
+            <p class="userSenha" style="justify-content: center !important; font-size: 2rem !important; margin: 0 auto;"> Login de Funcionário </p>
 
+            <div class="userSenhaIcone">
             <p class="userSenha"> Usuário: </p>
-            <asp:TextBox ID="user" runat="server"></asp:TextBox>
+            
+                <i class="fa-solid fa-circle-user fa-lg" style="color: rgb(255, 255, 255);"></i>
+                <asp:TextBox ID="user" runat="server" CssClass="editText"></asp:TextBox>
+            </div>
 
 
+            <div class="userSenhaIcone">
             <p class="userSenha"> Senha: </p>
-            <asp:TextBox ID="senha" runat="server"></asp:TextBox>
-
+            <i class="fa-solid fa-lock fa-lg" style="color: rgb(255, 255, 255);"></i>
+            <asp:TextBox ID="senha" runat="server" CssClass="editText" TextMode="Password"></asp:TextBox>
+            </div>
 
             <asp:Button ID="cadastrar" runat="server" Text="Cadastrar" class="btnCadastrar" OnClick="cadastrar_Click"/>
 
-            </div>
+        </div>
+
 
         </form>
               <script src="<%= ResolveUrl("~/Scripts/jquery-3.7.1.min.js") %>"></script>

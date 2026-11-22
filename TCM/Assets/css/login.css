@@ -4,6 +4,7 @@
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    max-height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -11,22 +12,32 @@
 .area {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center !important;
     margin: 0 auto;
-    width: 40vw;
-    height: 40vh;
+    width: 30vw;
+    height: 45vh;
     background-color: #0f0b0b;
     border: solid #E59828, 5px;
     border-radius: 10px;
-    padding: 20px;
+    padding: 40px;
+    margin-top: 8vw;  
 }
 
 
 
-.area button {
+.btnCadastrar {
     width: 8vw;
-    height: 4vh;
-
+    height: auto;
+    margin: 0 auto;
+    padding: 6px;
+    background-color: #E59828;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: white;
+    font-family: "Oswald", sans-serif;
+    text-align: center;
+    align-items: center;
+    margin-top: 3vw;
 }
 
 .area button:hover {
@@ -34,9 +45,23 @@
 }
 
 .userSenha {
-    text-align: left;
     font-size: 1.2rem;
     font-family: "Oswald", sans-serif;
-    font-size: 1.2rem;
     color: white;
+    width: 100%;
+    justify-content: left;
+}
+
+.usarSenhaIcone {
+    width: 3vw !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.editText {
+    width: 20vw;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
 }

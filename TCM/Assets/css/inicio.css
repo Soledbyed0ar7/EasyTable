@@ -1,11 +1,11 @@
-﻿
+﻿html {
+    scroll-behavior: smooth;
+}
 /* classes fixas */
 body {
-    background: linear-gradient(45deg, #0d0c0c, #1d1919, #0d0c0c);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    overflow: hidden;
+    background-color: #0f0b0b;
+    overflow-x: hidden;
+    margin: 0;
 }
 
 .centralizar {
@@ -24,8 +24,16 @@ body {
     width: 12vw;
     border: none;
     border-radius: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
     display: flex;
     text-align: center;
+}
+
+btnIniciar.aparecer {
+    opacity: 1;
+    transform: translateY(0);
 }
 
     .btnIniciar:hover {
@@ -39,5 +47,29 @@ body {
 #inicio {
     height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15vh;
+    box-sizing: border-box;
+}
+
+
+.telaInicial {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.logoInicial {
+    width: 250px;
+    height: auto;
+}
+
+.telaInicio {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15vh;
 }
