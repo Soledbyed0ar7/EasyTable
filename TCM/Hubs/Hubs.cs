@@ -38,6 +38,10 @@ namespace TCM
         {
             return Groups.Add(Context.ConnectionId, "cozinha");
         }
+        public Task configAtendimento()
+        {
+            return Groups.Add(Context.ConnectionId, mesaCookie().ToString());
+        }
 
         public void liberarMesa(int num)
         {
@@ -108,7 +112,9 @@ namespace TCM
         public void fecharComanda(int idMesa)
         {
             BalcaoBLL.fecharComanda(idMesa);
+            Clients.Group(idMesa.ToString()).tomarBan();
         }
+        
 
 
         //Clients.All.ReceberMensagem(mensagem);
