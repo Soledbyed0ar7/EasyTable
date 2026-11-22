@@ -19,7 +19,7 @@ namespace TCM.DAL
         }
         public static bool existeCosinha(String nome, String senha)
         {
-            int dt = Convert.ToInt32(bd.ConsultarValor("count * from Funcionario where usuario = @nome and senha = @senha tipo = 'C' ",
+            int dt = Convert.ToInt32(bd.ConsultarValor("select count(*) from Funcionario where usuario = @nome and senha = @senha and tipo = 'C' ",
                 BancoDados.Param("@nome", nome),
                 BancoDados.Param("@senha", senha)));
             if (dt == 0) return false;
@@ -27,7 +27,7 @@ namespace TCM.DAL
         }
         public static bool existeBalcao(String nome, String senha)
         {
-            int dt = Convert.ToInt32(bd.ConsultarValor("count * from Funcionario where usuario = @nome and senha = @senha tipo = 'B' ",
+            int dt = Convert.ToInt32(bd.ConsultarValor("select count(*) from Funcionario where usuario = @nome and senha = @senha and tipo = 'B' ",
                 BancoDados.Param("@nome", nome),
                 BancoDados.Param("@senha", senha)));
             if (dt == 0) return false;
