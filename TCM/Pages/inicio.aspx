@@ -17,7 +17,7 @@
 
         </div>
         <div id="inicio">
-            <asp:Button ID="btnInicial" runat="server" Text="Iniciar" type="button" class="btnIniciar centralizar"/>
+            <asp:Button ID="btnInicial" runat="server" Text="Iniciar" type="button" class="btnIniciar centralizar" UseSubmitBehavior="false"/>
         </div>
 
 
@@ -28,6 +28,10 @@
     <script src="<%= ResolveUrl("~/signalr/hubs") %>"></script>
     <script>
 
+
+        document.getElementById("btnInicial").onclick = function () {
+            window.location.href =  "<%=ResolveUrl("~/Pages/EscolheMesa.aspx")%>";
+                };
 
         window.addEventListener("scroll", function () {
 
@@ -45,6 +49,10 @@
             }
 
         });
+
+
+
+
     </script>
 </body>
 </html>
