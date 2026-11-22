@@ -99,8 +99,9 @@
     <Content Include="Assets\img\milkshake.jpg" />
     <Content Include="Assets\img\fundo.jpg" />
     <Content Include="Assets\img\refrigerante.jpg" />
-    <Content Include="garcom.aspx" />
+    <Content Include="Pages\garcom.aspx" />
     <Content Include="Assets\css\garcom.css" />
+    <Content Include="Assets\css\login.css" />
     <Content Include="Pages\login.aspx" />
     <Content Include="Pages\inicio.aspx" />
     <Content Include="Pages\atendimento.aspx" />
@@ -131,11 +132,11 @@
     <Compile Include="DAL\PedidoProdutoSubProdutoDAL.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
     <Compile Include="DAL\SubProdutoDAL.cs" />
-    <Compile Include="garcom.aspx.cs">
+    <Compile Include="Pages\garcom.aspx.cs">
       <DependentUpon>garcom.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="garcom.aspx.designer.cs">
+    <Compile Include="Pages\garcom.aspx.designer.cs">
       <DependentUpon>garcom.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\login.aspx.cs">
