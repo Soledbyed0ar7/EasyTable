@@ -75,7 +75,7 @@
 
             mesaNotificada = idMesa;
 
-            abrirModalNotificacao(idMesa);
+            avisarGarcons(idMesa);
 
         };
 
@@ -118,7 +118,7 @@
         });
 
 
-        function abrirModalNotificacao(idMesa) {
+        function avisarGarcons(idMesa) {
 
             document.getElementById("textoNotificacao").textContent =
                 "A mesa " + idMesa + " enviou um pedido.";

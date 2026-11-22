@@ -132,7 +132,7 @@
                         </div>
 
                         <button type="button" id="finalizarPedido">
-                            Finalizar pedido
+                            
                         </button>
 
                     </div>
@@ -918,11 +918,12 @@
                 }
 
 
-                alert("Pedido preparado! A integração para enviar a solicitação ao garçom será implementada posteriormente.");
+                hub.server.finalizarPedido();
 
             });
 
 
+            
         });
 
     </script>
