@@ -100,6 +100,7 @@
     <Content Include="Assets\img\fundo.jpg" />
     <Content Include="Assets\img\refrigerante.jpg" />
     <Content Include="garcom.aspx" />
+    <Content Include="Assets\css\garcom.css" />
     <Content Include="Pages\login.aspx" />
     <Content Include="Pages\inicio.aspx" />
     <Content Include="Pages\atendimento.aspx" />
