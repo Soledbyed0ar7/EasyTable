@@ -44,7 +44,7 @@ namespace TCM
             HttpCookie cookie = new HttpCookie("permicao");
 
             cookie.Value = "P";
-            cookie.Expires = DateTime.Now.AddHours(5);
+            cookie.Expires = DateTime.Now.AddSeconds(10);
             cookie.Path = "/";
             HttpContext.Current.Response.Cookies.Add(cookie);
         }
