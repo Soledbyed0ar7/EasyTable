@@ -936,7 +936,12 @@
 
             });
 
-            hub.server.tomarBan();
+            hub.client.tomarBan = function () {
+
+                    window.location.href = "<%=ResolveUrl("~/Pages/inicio.aspx")%>";
+                        };
+
+            }
 
 
             
