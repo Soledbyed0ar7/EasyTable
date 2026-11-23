@@ -84,3 +84,67 @@ body {
 }
 
 
+
+
+
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #areaDasMesas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: auto;
+        gap: 18px;
+        padding: 25px;
+        min-height: 80vh;
+        align-content: center;
+        box-sizing: border-box;
+    }
+
+    .mesa {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        font-size: 1.4rem;
+        border-radius: 12px;
+    }
+
+    .textoMesa {
+        font-size: 2.2rem;
+        margin: 20px 0;
+    }
+
+    #areaDasMesas p {
+        font-size: 1.6rem;
+    }
+
+    .tituloqualquer p {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+    #areaDasMesas {
+        gap: 14px;
+        padding: 18px;
+        min-height: 75vh;
+    }
+
+    .mesa {
+        font-size: 1.3rem;
+        border-radius: 10px;
+    }
+
+    .textoMesa {
+        font-size: 2rem;
+    }
+
+    .tituloqualquer p {
+        font-size: 1.6rem;
+    }
+}
+
+

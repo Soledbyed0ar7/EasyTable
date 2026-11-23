@@ -1,11 +1,11 @@
-﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="atendimento.aspx.cs" Inherits="TCM.atendimento" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="atendimento.aspx.cs" Inherits="TCM.atendimento" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
 
     <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/cardapio.css") %>" />
@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -56,7 +57,7 @@
 
                     <div id="linhaSubProdutos"></div>
 
-                    <button id="adicionarAoCarrinho" type="button" disabled>
+                    <button id="adicionarAoCarrinho" type="button" disabled class="adicionarCarrinho">
                         Adicionar ao Carrinho
                     </button>
 
@@ -132,7 +133,7 @@
                         </div>
 
                         <button type="button" id="finalizarPedido">
-                            
+                            Finalizar Pedido
                         </button>
 
                     </div>
@@ -268,49 +269,9 @@
                 });
 
 
-                let controles = document.createElement("div");
+                let quantidade = document.createElement("p");
 
-                controles.className = "controlesQuantidadeCarrinho";
-
-
-                let diminuir = document.createElement("button");
-
-                diminuir.type = "button";
-
-                diminuir.textContent = "-";
-
-
-                let quantidade = document.createElement("span");
-
-                quantidade.textContent = item.quantidade;
-
-
-                let aumentar = document.createElement("button");
-
-                aumentar.type = "button";
-
-                aumentar.textContent = "+";
-
-
-                diminuir.addEventListener("click", function () {
-
-                    atualizarQuantidadeItem(item.idPedidoProduto, -1);
-
-                });
-
-
-                aumentar.addEventListener("click", function () {
-
-                    atualizarQuantidadeItem(item.idPedidoProduto, 1);
-
-                });
-
-
-                controles.appendChild(diminuir);
-
-                controles.appendChild(quantidade);
-
-                controles.appendChild(aumentar);
+                quantidade.textContent = "Quantidade: " + item.quantidade;
 
 
                 let precoTotal = document.createElement("p");
@@ -327,53 +288,12 @@
 
                 caixa.appendChild(modificacoes);
 
-                caixa.appendChild(controles);
+                caixa.appendChild(quantidade);
 
                 caixa.appendChild(precoTotal);
 
 
                 return caixa;
-
-            }
-
-
-            function atualizarQuantidadeItem(idPedidoProduto, alteracao) {
-
-                let item = itensCarrinho.find(function (produto) {
-
-                    return produto.idPedidoProduto === idPedidoProduto;
-
-                });
-
-                if (!item) {
-
-                    return;
-
-                }
-
-
-                item.quantidade += alteracao;
-
-
-                if (item.quantidade <= 0) {
-
-                    itensCarrinho = itensCarrinho.filter(function (produto) {
-
-                        return produto.idPedidoProduto !== idPedidoProduto;
-
-                    });
-
-                } else {
-
-                    item.precoTotal =
-                        Number(item.precoUnitario) * Number(item.quantidade);
-
-                }
-
-
-                atualizarRodapeCarrinho();
-
-                gerarListaCarrinho();
 
             }
 
@@ -939,8 +859,8 @@
             };
 
 
-        
-            
+
+
 
         });
 

@@ -29,7 +29,7 @@ body {
     transition: opacity 0.8s ease, transform 0.8s ease;
     display: flex;
     text-align: center;
-    font-family: "Oswald", sans-serif;
+    
 }
 
 .btnIniciar.aparecer {
@@ -52,7 +52,8 @@ body {
     align-items: flex-start;
     padding-top: 15vh;
     box-sizing: border-box;
-}
+    font-family: "Oswald", sans-serif;
+} 
 
 
 .telaInicial {
@@ -74,3 +75,59 @@ body {
     align-items: flex-start;
     padding-top: 15vh;
 }
+
+
+
+
+
+@media (max-width: 768px) {
+    #inicio,
+    .telaInicio {
+        height: 100dvh;
+        padding: 12vh 20px 0;
+        box-sizing: border-box;
+        align-items: center;
+    }
+
+    .telaInicial {
+        height: 100dvh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .logoInicial {
+        width: min(280px, 75vw);
+        max-height: 45vh;
+        object-fit: contain;
+    }
+
+    .btnIniciar {
+        width: auto;
+        min-width: 180px;
+        min-height: 65px;
+        padding: 12px 25px;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        
+    }
+}
+
+@media (max-width: 380px) {
+    #inicio,
+    .telaInicio {
+        padding: 8vh 15px 0;
+    }
+
+    .logoInicial {
+        width: 75vw;
+        max-height: 40vh;
+    }
+
+    .btnIniciar {
+        min-width: 190px;
+        min-height: 65px;
+        font-size: 2.3rem;
+    }
+}
+

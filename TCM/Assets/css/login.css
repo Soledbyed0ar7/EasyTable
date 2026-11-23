@@ -65,3 +65,74 @@
     border: none;
     border-radius: 8px;
 }
+
+
+
+
+@media (max-width: 768px) {
+    body {
+        min-height: 100dvh;
+        max-height: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 25px 0;
+    }
+
+    .area {
+        width: 85vw;
+        height: auto;
+        min-height: 0;
+        padding: 35px 25px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        gap: 15px;
+    }
+
+    .userSenha {
+        width: 100%;
+        font-size: 1.3rem;
+    }
+
+    .usarSenhaIcone {
+        width: 45px !important;
+    }
+
+    .editText {
+        width: 100%;
+        min-height: 45px;
+        padding: 8px 12px;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+    .btnCadastrar {
+        width: 65%;
+        min-height: 48px;
+        padding: 10px;
+        margin: 25px auto 0;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .area {
+        width: 92vw;
+        padding: 30px 20px;
+    }
+
+    .userSenha {
+        font-size: 1.2rem;
+    }
+
+    .editText {
+        min-height: 48px;
+    }
+
+    .btnCadastrar {
+        width: 75%;
+        min-height: 52px;
+    }
+}
+

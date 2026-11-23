@@ -204,3 +204,150 @@ body {
         padding: 18px;
     }
 }
+
+
+@media (max-width: 768px) {
+    .tudo {
+        min-height: 100dvh;
+        padding: 35px 20px;
+        box-sizing: border-box;
+        justify-content: center;
+        gap: 30px;
+    }
+
+        .tudo h1 {
+            font-size: 2.7rem;
+            text-align: center;
+        }
+
+    .areaConsulta {
+        flex-direction: column;
+        width: 100%;
+        max-width: 450px;
+        gap: 18px;
+    }
+
+    #numMesa {
+        width: 100%;
+        min-height: 58px;
+        padding: 15px;
+        font-size: 1.2rem;
+        box-sizing: border-box;
+    }
+
+    #verConta {
+        width: 100%;
+        min-height: 58px;
+        font-size: 1.3rem;
+    }
+
+    .modal {
+        padding: 15px;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .conteudoModal {
+        width: 100%;
+        max-width: 550px;
+        max-height: 90dvh;
+        padding: 22px;
+        border-radius: 14px;
+    }
+
+    .cabecalhoModal h2 {
+        font-size: 1.8rem;
+    }
+
+    #fecharModal {
+        font-size: 2rem;
+        padding: 8px;
+    }
+
+    .produtoExtrato {
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .cabecalhoProduto {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+        .cabecalhoProduto h3 {
+            font-size: 1.35rem;
+        }
+
+        .cabecalhoProduto span {
+            font-size: 1.2rem;
+        }
+
+    .valoresProduto {
+        font-size: 1.05rem;
+    }
+
+    .alteracoesProduto {
+        font-size: 1.05rem;
+    }
+
+    .resumoComanda {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+        .resumoComanda h3 {
+            font-size: 1.3rem;
+        }
+
+    #valorTotalComanda {
+        font-size: 1.7rem;
+    }
+
+    #fecharComanda {
+        min-height: 58px;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .tudo {
+        padding: 25px 18px;
+        gap: 25px;
+    }
+
+        .tudo h1 {
+            font-size: 2.4rem;
+        }
+
+    #numMesa,
+    #verConta {
+        min-height: 55px;
+        font-size: 1.15rem;
+    }
+
+    .modal {
+        padding: 10px;
+    }
+
+    .conteudoModal {
+        padding: 18px;
+        max-height: 94dvh;
+    }
+
+    .cabecalhoModal h2 {
+        font-size: 1.6rem;
+    }
+
+    .produtoExtrato {
+        padding: 15px;
+    }
+
+    .resumoComanda {
+        gap: 10px;
+    }
+}
+
+
+

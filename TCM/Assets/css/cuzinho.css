@@ -135,3 +135,124 @@ body {
         opacity: 0.6;
         cursor: default;
     }
+
+
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .containerCozinha {
+        padding: 25px 18px;
+    }
+
+    .tituloCozinha {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+    }
+
+    #areaPedidos {
+        grid-template-columns: minmax(0, 1fr);
+        justify-content: stretch;
+        gap: 22px;
+    }
+
+    .cardPedido {
+        width: 100%;
+        min-height: 0;
+        border-radius: 14px;
+    }
+
+    .cabecalhoPedido {
+        padding: 17px 20px;
+    }
+
+        .cabecalhoPedido h2 {
+            font-size: 1.7rem;
+        }
+
+    .conteudoPedido {
+        padding: 18px 20px;
+    }
+
+    .linhaProduto {
+        padding: 16px 0;
+    }
+
+    .informacoesProduto {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+        .informacoesProduto h3 {
+            font-size: 1.3rem;
+            overflow-wrap: anywhere;
+        }
+
+    .quantidadeProduto {
+        font-size: 1.25rem;
+        white-space: nowrap;
+    }
+
+    .alteracoesProduto {
+        margin-top: 12px;
+        padding-left: 5px;
+    }
+
+        .alteracoesProduto p {
+            font-size: 1.05rem;
+            margin: 7px 0;
+        }
+
+    .botaoPedidoPronto {
+        width: calc(100% - 36px);
+        min-height: 58px;
+        margin: 0 18px 18px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .containerCozinha {
+        padding: 20px 12px;
+    }
+
+    .tituloCozinha {
+        font-size: 2.2rem;
+        margin-bottom: 22px;
+    }
+
+    #areaPedidos {
+        gap: 18px;
+    }
+
+    .cabecalhoPedido {
+        padding: 16px;
+    }
+
+        .cabecalhoPedido h2 {
+            font-size: 1.6rem;
+        }
+
+    .conteudoPedido {
+        padding: 16px;
+    }
+
+    .informacoesProduto h3 {
+        font-size: 1.2rem;
+    }
+
+    .quantidadeProduto {
+        font-size: 1.15rem;
+    }
+
+    .botaoPedidoPronto {
+        width: calc(100% - 28px);
+        margin: 0 14px 14px;
+        min-height: 60px;
+    }
+}
+
+

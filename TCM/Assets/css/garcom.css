@@ -2,10 +2,7 @@
 /* Configurações gerais */
 
 body {
-    background: linear-gradient(45deg, #0d0c0c, #1d1919, #0d0c0c);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background-color: #0f0b0b;
     overflow: hidden;
 }
 
@@ -25,6 +22,7 @@ body {
     font-size: 3rem;
     text-align: center;
     color: white;
+    font-family: "Oswald", sans-serif;
 }
 
 #areaDasMesas {
@@ -80,3 +78,87 @@ body {
         margin: 8px;
         cursor: pointer;
     }
+
+
+
+
+
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .containerMesas {
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    #areaDasMesas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        padding: 15px;
+        min-height: 70vh;
+        align-content: center;
+        box-sizing: border-box;
+    }
+
+    .mesa {
+        width: 100%;
+        height: auto;
+        min-width: 0;
+        min-height: 0;
+        aspect-ratio: 1;
+        font-size: 1.4rem;
+        border-radius: 12px;
+    }
+
+    .textoMesa {
+        font-size: 2.2rem;
+        margin: 20px 0;
+    }
+
+    .conteudoModal {
+        width: calc(100% - 30px);
+        min-width: 0;
+        max-width: 500px;
+        padding: 25px 20px;
+        box-sizing: border-box;
+    }
+
+        .conteudoModal button {
+            min-height: 48px;
+            font-size: 1rem;
+        }
+}
+
+@media (max-width: 380px) {
+    .containerMesas {
+        padding: 10px;
+    }
+
+    #areaDasMesas {
+        gap: 14px;
+        padding: 10px;
+    }
+
+    .mesa {
+        font-size: 1.3rem;
+    }
+
+    .textoMesa {
+        font-size: 2rem;
+    }
+
+    .conteudoModal {
+        width: calc(100% - 24px);
+        padding: 22px 16px;
+    }
+
+        .conteudoModal button {
+            width: 100%;
+            margin: 8px 0;
+        }
+}
+
+
