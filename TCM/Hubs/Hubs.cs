@@ -40,6 +40,10 @@ namespace TCM
         }
         public Task configAtendimento()
         {
+            if(mesaCookie() == -1)
+            {
+                Clients.Caller.tomarBan();
+            }
             return Groups.Add(Context.ConnectionId, mesaCookie().ToString());
         }
 
