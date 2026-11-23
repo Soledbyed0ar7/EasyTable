@@ -1,9 +1,6 @@
 ﻿/* classes fixas */
 body {
-    background: linear-gradient(45deg, #0d0c0c, #1d1919, #0d0c0c);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background-color: #0f0b0b;
     overflow: hidden;
 }
 
@@ -19,12 +16,18 @@ body {
 
 #areaDasMesas {
     display: grid;
-    grid-template-columns: repeat(2, 6vw);
-    grid-template-rows: repeat(5, 6vw);
+    grid-template-columns: repeat(5, 6vw);
+    grid-template-rows: repeat(3, 6vw);
     gap: 30px;
     justify-content: center;
     align-content: center;
     min-height: 100vh;
+}
+
+#areaDasMesas p {
+    color: white;
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
 }
 
 .mesa {
@@ -68,3 +71,16 @@ body {
     color: black;
     transition: background-color 0.4s, color 0.4s;
 }
+.tituloqualquer {
+    display: flex;
+    justify-content: center;
+
+}
+
+.tituloqualquer p {
+    color: white;
+    font-size: 2rem;
+    font-family: "Oswald", sans-serif;
+}
+
+

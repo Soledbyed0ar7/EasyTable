@@ -662,7 +662,7 @@
 
 
                     hub.server.configAtendimento();
-                    
+
 
                     hub.server.listarTodosProdutos()
 
@@ -790,9 +790,6 @@
                         quantidade.textContent = subproduto.quantidadeSelecionada;
 
                     }
-                    else {
-                        subproduto.st
-                    }
 
                 });
 
@@ -865,7 +862,7 @@
 
             }
 
-            
+
 
 
 
@@ -938,17 +935,13 @@
 
             hub.client.tomarBan = function () {
 
-                    window.location.href = "<%=ResolveUrl("~/Pages/inicio.aspx")%>";
-                        };
-
-            }
+                window.location.href = "<%=ResolveUrl("~/Pages/inicio.aspx")%>";
+            };
 
 
+        
             
 
-
-
-            
         });
 
     </script>

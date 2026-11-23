@@ -18,7 +18,7 @@
 
     <div class="conteudoModal">
 
-        <h2>Novo pedido!</h2>
+        <h2>Novo pedido</h2>
 
         <p id="textoNotificacao"></p>
 
@@ -169,6 +169,11 @@
                     console.error("Erro ao enviar resposta:", erro);
 
                 });
+
+            hub.client.tomarBan = function () {
+
+                window.location.href = "<%=ResolveUrl("~/Pages/login.aspx")%>";
+            };
 
         }
 

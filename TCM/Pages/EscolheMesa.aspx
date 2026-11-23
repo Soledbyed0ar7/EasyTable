@@ -12,8 +12,10 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
         <div>
+            <div class="tituloqualquer"> <p> Selecione sua mesa: </p> </div>
+            
             <div id="areaDasMesas">
-
+                
             </div>
 
         </div>

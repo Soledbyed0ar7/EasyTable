@@ -85,6 +85,8 @@
 
             var hub = $.connection.hubs;
 
+            
+
             let idMesaAtual = null;
 
             const formatarPreco = new Intl.NumberFormat("pt-BR", {
@@ -283,6 +285,8 @@
 
             });
 
+            
+
             document.getElementById("fecharModal").addEventListener("click", function () {
 
                 document.getElementById("modalExtrato").style.display = "none";
@@ -291,13 +295,23 @@
 
             $.connection.hub.start()
 
+
+
                 .done(function () {
                     console.log("Conexão com o SignalR estabelecida!");
+
+                    hub.server.configBalcao();
                 })
 
                 .fail(function (erro) {
                     console.error("Erro na conexão com SignalR:", erro);
                 });
+
+
+            hub.client.tomarBan = function () {
+
+                window.location.href = "<%=ResolveUrl("~/Pages/login.aspx")%>";
+                        };
 
         });
 

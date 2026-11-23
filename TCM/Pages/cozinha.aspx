@@ -167,6 +167,11 @@
 
             });
 
+            hub.client.tomarBan = function () {
+
+                window.location.href = "<%=ResolveUrl("~/Pages/login.aspx")%>";
+                        };
+
         });
 
     </script>
