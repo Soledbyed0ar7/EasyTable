@@ -42,7 +42,7 @@ namespace TCM
         public Task configGarcom()
         {
             var cookie = HttpContext.Current.Request.Cookies["permicao"];
-            if (cookie == null)
+            if (cookie == null || !(cookie.Value == "P"))
             {
                 Clients.Caller.tomarBan();
             }
@@ -51,7 +51,7 @@ namespace TCM
         public Task configCozinha()
         {
             var cookie = HttpContext.Current.Request.Cookies["permicao"];
-            if (cookie == null)
+            if (cookie == null || !(cookie.Value == "P"))
             {
                 Clients.Caller.tomarBan();
             }
@@ -61,7 +61,7 @@ namespace TCM
         public void configBalcao()
         {
             var cookie = HttpContext.Current.Request.Cookies["permicao"];
-            if (cookie == null)
+            if (cookie == null || !(cookie.Value == "P"))
             {
                 Clients.Caller.tomarBan();
             }
